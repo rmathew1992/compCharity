@@ -7,3 +7,6 @@ def index(request):
 
 def profile(request):
 	return TemplateResponse(request,'profile.html')
+
+def challenge(request):
+	return TemplateResponse(request,'challenge.html')

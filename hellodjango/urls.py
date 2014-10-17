@@ -7,5 +7,6 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
 	url(r'^$', include('goodbets.urls')),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^profile/','goodbets.views.profile', name='profile')
+    url(r'^profile/','goodbets.views.profile', name='profile'),
+    url(r'^challenge/','goodbets.views.challenge', name='challenge')
 )
