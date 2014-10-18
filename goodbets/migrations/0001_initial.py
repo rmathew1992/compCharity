@@ -53,4 +53,8 @@ class Migration(migrations.Migration):
             field=models.ForeignKey(to='goodbets.User'),
             preserve_default=True,
         ),
+<<<<<<< HEAD
     ]
+=======
+    ]
+>>>>>>> 3132b538c0e2b5fab5063503742c23fa7a5aeff3

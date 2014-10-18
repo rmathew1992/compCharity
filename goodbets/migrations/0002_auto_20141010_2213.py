@@ -22,4 +22,8 @@ class Migration(migrations.Migration):
             name='username',
             field=models.CharField(max_length=50),
         ),
+<<<<<<< HEAD
     ]
+=======
+    ]
+>>>>>>> 3132b538c0e2b5fab5063503742c23fa7a5aeff3
