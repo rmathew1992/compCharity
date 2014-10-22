@@ -12,7 +12,10 @@ def index(request):
     return TemplateResponse(request,'index.html')
 
 def profile(request):
-    return TemplateResponse(request,'profile.html')
+    user_list = User.objects.all()
+    challenge_list = Challenge.objects.all()
+    context = {'user_list': user_list, 'challenge_list': challenge_list}
+    return render(request, 'profile.html', context)
 
 def challenge(request):
     # if this is a POST request we need to process the form data
