@@ -10,8 +10,7 @@ class User(models.Model):
 	username
 	id
 	bets = {bet1, bet2, ...}
-	"""
-
+	"""	
 	def __str__(self):
 		return self.username
 
