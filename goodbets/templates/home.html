@@ -1,0 +1,32 @@
+<div class="navbar navbar-inverse navbar-fixed-top">
+   <div class="navbar-inner">
+       <div class="container">
+           <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+           </button>
+           <a class="brand" href="/rango/">Rango</a>
+
+           <div class="nav-collapse collapse">
+               <ul class="nav pull-right">
+                   {% if user.is_authenticated %}
+                    <li class="navbar-text">Welcome, {{ user.username }}!</li>
+                    <li><a href="/rango/logout/">Logout</a></li>
+                   {% else %}
+                    <li><a href="/rango/register/">Register</a></li>
+                    <li><a href="/rango/login/">Login</a></li>
+                   {% endif %}
+               </ul>
+               <ul class="nav">
+                   {% if user.is_authenticated %}
+                    <li><a href="/rango/restricted/">Restricted</a></li>
+                    <li><a href="/rango/add_category/">Add Category</a></li>
+                   {% endif %}
+                   <li><a href="/rango/about/">About</a></li>
+               </ul>
+           </div>
+           <!--/.nav-collapse -->
+       </div>
+   </div>
+</div>
