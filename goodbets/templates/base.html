@@ -14,8 +14,12 @@
   {% bootstrap_css %}
   {% bootstrap_javascript %}
 
-  {# static #}
+  {# material template #}
   {% load staticfiles %}
+  <link href="{% static 'bootstrap-material-design/dist/css/ripples.min.css' %}" rel="stylesheet">
+  <link href="{% static 'bootstrap-material-design/dist/css/material-wfont.min.css' %}" rel="stylesheet">
+
+  {# facebook #}
   <script src="{% static 'testing.js' %}"></script>
 
   <title>{% block title %} GoodBets {% endblock %}</title>
