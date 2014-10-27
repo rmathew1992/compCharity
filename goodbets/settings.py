@@ -11,8 +11,8 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 # Build paths inside the project like this: os.path.join(PROJECT_ROOT, ...)
 import os
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
-STATIC_ROOT = os.path.abspath(os.path.join(PROJECT_ROOT, 'static'))
 GOODBETS_ROOT = os.path.abspath(os.path.dirname(__file__))
+STATIC_ROOT = os.path.abspath(os.path.join(GOODBETS_ROOT, 'static'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
