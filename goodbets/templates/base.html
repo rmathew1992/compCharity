@@ -1,26 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-    {% load tags %}
+  {% load tags %}
 
-    {# url to navbar-tag translations #}
-    {% url home as home %}
-    {% url challenge as challenge %}
-    {% url profile as profile %}
-    {% url login as login %}
+  {# url to navbar-tag translations #}
+  {% url home as home %}
+  {% url challenge as challenge %}
+  {% url profile as profile %}
+  {% url login as login %}
 
-    {# bootstrap #}
-    {% load bootstrap3 %}
-    {% bootstrap_css %}
-    {% bootstrap_javascript %}
+  {# bootstrap #}
+  {% load bootstrap3 %}
+  {% bootstrap_css %}
+  {% bootstrap_javascript %}
 
-    {# static #}
-    {% load staticfiles %}
-    <script src="{% static 'testing.js' %}"></script>
+  {# static #}
+  {% load staticfiles %}
+  <script src="{% static 'testing.js' %}"></script>
 
-    <title>{% block title %} GoodBets {% endblock %}</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %} GoodBets {% endblock %}</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 <head>
 
 <body style="padding-top: 65px;">
