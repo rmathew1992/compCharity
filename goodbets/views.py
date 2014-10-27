@@ -54,6 +54,8 @@ def challenge(request):
 
     return render(request, 'challenge.html', {'form': form})
 
+def home(request):
+    return render(request, 'home.html')
 
 # class ChallengeCreate(CreateView):
 #   model = Challenge
