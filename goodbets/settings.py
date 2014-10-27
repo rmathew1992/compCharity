@@ -45,17 +45,19 @@ CRISPY_TEMPLATE_PACK = 'bootstrap'
 
 STATICFILES_FINDERS = (
     'djangobower.finders.BowerFinder',
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 )
 
 STATICFILES_DIRS = (
     os.path.join(PROJECT_ROOT, "static"),
-    )
+)
 
 BOWER_COMPONENTS_ROOT = os.path.join(PROJECT_ROOT, 'components')
 
 BOWER_INSTALLED_APPS = (
     'bootstrap-material-design#0.1.2',
-    )
+)
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
