@@ -1,6 +1,5 @@
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.template.response import TemplateResponse
-from forms import ChallengeForm
 from django.shortcuts import get_object_or_404, render, redirect
 from goodbets.forms import ChallengeForm
 from django.forms import ModelForm
