@@ -1,4 +1,6 @@
 from django.conf.urls import patterns, url
+from django.conf import settings
+from django.conf.urls.static import static
 from goodbets import views
 
 urlpatterns = patterns('',
@@ -8,3 +10,5 @@ urlpatterns = patterns('',
     url(r'^home/', views.home, name='home'),
     url(r'^material/', views.material, name='material-design'),
 )
+
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
