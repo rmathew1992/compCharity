@@ -10,7 +10,9 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 
 # Build paths inside the project like this: os.path.join(PROJECT_ROOT, ...)
 import os
-PROJECT_ROOT = os.path.dirname(os.path.dirname(__file__))
+PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+STATIC_ROOT = os.path.abspath(os.path.join(PROJECT_ROOT, 'static'))
+GOODBETS_ROOT = os.path.abspath(os.path.dirname(__file__))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
@@ -47,10 +49,6 @@ STATICFILES_FINDERS = (
     'djangobower.finders.BowerFinder',
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-)
-
-STATICFILES_DIRS = (
-    os.path.join(PROJECT_ROOT, "static"),
 )
 
 BOWER_COMPONENTS_ROOT = os.path.join(PROJECT_ROOT, 'components')
@@ -114,3 +112,4 @@ TEMPLATE_DIRS = [os.path.join(PROJECT_ROOT, 'templates')]
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 STATIC_URL = '/static/'
+
