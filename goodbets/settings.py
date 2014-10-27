@@ -48,7 +48,7 @@ STATICFILES_FINDERS = (
 )
 
 STATICFILES_DIRS = (
-    os.path.join(PROJECT_ROOT, "static")
+    os.path.join(PROJECT_ROOT, "static"),
     '/var/www/static/',
     )
 
