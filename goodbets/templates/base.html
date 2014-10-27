@@ -7,6 +7,7 @@
     {% url home as home %}
     {% url challenge as challenge %}
     {% url profile as profile %}
+    {% url login as login %}
 
     {# bootstrap #}
     {% load bootstrap3 %}
@@ -18,7 +19,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 <head>
 
-<body>
+<body style="padding-top: 65px;">
     <!-- Fixed navbar -->
     <div class="navbar navbar-default navbar-fixed-top" role="navigation">
       <div class="container">
@@ -33,15 +34,16 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="{% active request home %}"><a href="home">Home</a></li>
-            <li><a href="challenge">Bet</a></li>
-            <li><a href="#">Feed</a></li>
-            <li><a href="#">My Bets</a></li>
+            <li class="{% active request home %}"><a href="../home">Home</a></li>
+            <li><a class="{% active request challenge %}" href="../challenge">Bet</a></li>
+            <li><a class="{% active request feed %}" href="#">Feed</a></li>
+            <li><a class="{% active request myBets %}" href="#">My Bets</a></li>
+            <li><a class="{% active request profile %}" href="../profile">Profile</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="../navbar/">About us</a></li>
-            <li><a href="../navbar-static-top/">Static top</a></li>
-            <li class="active"><a href="./">Fixed top</a></li>
+            <li><a href="#">About us</a></li>
+            <li><a href="#">Register</a></li>
+            <li class='{% active request asdf %}'><a href="../">Login</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -49,7 +51,7 @@
 
     <div class="container">
       {# page content goes here #}
-      {% block content %}{% endblock %}
+      {% block body %}{% endblock %}
     </div> <!-- /container -->
   </body>
 </html>

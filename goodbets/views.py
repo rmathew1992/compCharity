@@ -6,7 +6,6 @@ from django.forms import ModelForm
 # from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
 # from django.core.urlresolvers import reverse_lazy
 from goodbets.models import User, Challenge, Bet
-import navigation
 
 
 def index(request):
@@ -15,7 +14,11 @@ def index(request):
 def profile(request):
     user_list = User.objects.all()
     challenge_list = Challenge.objects.all()
-    context = {'user_list': user_list, 'challenge_list': challenge_list}
+    context = {
+        'user_list': user_list, 
+        'challenge_list': challenge_list, 
+        'request': request,
+    }
     return render(request, 'profile.html', context)
 
 def challenge(request):
@@ -53,11 +56,10 @@ def challenge(request):
     else:
         form = ChallengeForm()
 
-    return render(request, 'challenge.html', {'form': form})
+    return render(request, 'challenge.html', {'form': form, 'request': request})
 
 def home(request):
-    context = {'activePage', 'home'}
-    return render(request, 'home.html', context)
+    return render(request, 'home.html', {'request': request})
 
 # class ChallengeCreate(CreateView):
 #   model = Challenge

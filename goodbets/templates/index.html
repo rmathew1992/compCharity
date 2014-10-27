@@ -1,27 +1,10 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>Login</title>
-<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-{% load staticfiles %}
-<script src="{% static "testing.js" %}"></script>
-<meta charset="UTF-8">
-</head>
-<body>
+{% extends "base.html" %}
 
-<!--
-  Below we include the Login Button social plugin. This button uses
-  the JavaScript SDK to present a graphical Login button that triggers
-  the FB.login() function when clicked.
--->
+{% block body %}
+    <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+    </fb:login-button>
+    <div id="status">
+    </div>
 
-<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-</fb:login-button>
-<div id="status">
-</div>
-
-<button type="button" id="logout"> Log out </button>
-
-</body>
-</html>
+    <button type="button" id="logout"> Log out </button>
+{% endblock body %}
