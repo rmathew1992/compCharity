@@ -6,6 +6,7 @@ from django.forms import ModelForm
 # from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
 # from django.core.urlresolvers import reverse_lazy
 from goodbets.models import User, Challenge, Bet
+import navigation
 
 
 def index(request):
@@ -55,7 +56,8 @@ def challenge(request):
     return render(request, 'challenge.html', {'form': form})
 
 def home(request):
-    return render(request, 'home.html')
+    context = {'activePage', 'home'}
+    return render(request, 'home.html', context)
 
 # class ChallengeCreate(CreateView):
 #   model = Challenge
