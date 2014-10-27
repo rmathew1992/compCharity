@@ -8,10 +8,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.7/ref/settings/
 """
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+# Build paths inside the project like this: os.path.join(PROJECT_ROOT, ...)
 import os
-BASE_DIR = os.path.dirname(os.path.dirname(__file__))
-
+PROJECT_ROOT = os.path.dirname(os.path.dirname(__file__))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
@@ -39,9 +38,16 @@ INSTALLED_APPS = (
     'goodbets',
     'crispy_forms',
     'bootstrap3',
+    'djangobower',
 )
 
 CRISPY_TEMPLATE_PACK = 'bootstrap'
+
+STATICFILES_FINDERS = (
+    'djangobower.finders.BowerFinder',
+)
+
+BOWER_COMPONENTS_ROOT = os.path.join(PROJECT_ROOT, 'components')
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -74,7 +80,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': os.path.join(PROJECT_ROOT, 'db.sqlite3'),
     }
 }
 
@@ -92,10 +98,11 @@ USE_L10N = True
 USE_TZ = True
 
 
-TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
+TEMPLATE_DIRS = [os.path.join(PROJECT_ROOT, 'templates')]
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 STATIC_URL = '/static/'
 
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
