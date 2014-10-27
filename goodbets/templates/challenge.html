@@ -26,13 +26,12 @@
   </head>
   <body>
     <div class='container-fluid'>
-		User List
-		{{ user_list }}
-	</div>
-	<div class='container-fluid'>
-		Challenge List
-		{{ challenge_list }}
-	</div>
+      {% load crispy_forms_tags %}
+   
+      {% block content %}
+         {% crispy form %}
+      {% endblock %}
+    </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
