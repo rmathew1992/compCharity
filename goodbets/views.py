@@ -1,3 +1,4 @@
+
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.template.response import TemplateResponse
 from django.shortcuts import get_object_or_404, render, redirect
@@ -60,6 +61,9 @@ def challenge(request):
 
 def home(request):
     return render(request, 'home.html', {'request': request})
+
+def material(request):
+    return render(request, 'material-demo.html')
 
 # class ChallengeCreate(CreateView):
 #   model = Challenge
