@@ -48,8 +48,8 @@ STATICFILES_FINDERS = (
 )
 
 STATICFILES_DIRS = (
-    os.path.join(PROJECT_ROOT, "static"),
     '/var/www/static/',
+    os.path.join(PROJECT_ROOT, "static"),
     )
 
 BOWER_COMPONENTS_ROOT = os.path.join(PROJECT_ROOT, 'components')
