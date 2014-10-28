@@ -73,8 +73,11 @@
     FB.api('/me', function(response) {
       console.log('Successful login for: ' + response.name);
       document.getElementById('status').innerHTML =
-        'Thanks for logging in, ' + response.name + '!';
+       response.name;
+      document.getElementById('login_message').innerHTML =
+       "You've been successfully logged in " + response.name; 
     });
+    $( "#login").replaceWith( '<li><button type="button" id="logout" class="btn btn-default navbar-btn">Logout</button></li>' );
   }
 
   $(document).on("click", "#profile", function(){
@@ -85,11 +88,6 @@
         }).fail(function(e,event) { 
           alert("Error:", e);
         });  
-  });
-
-  $(document).on("click", "#logout", function(){
-    FB.logout(function(response) {
-    });   
   });
 
 });

@@ -8,7 +8,7 @@
   {% url challenge as challenge %}
   {% url profile as profile %}
   {% url login as login %}
-
+  <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
   {# bootstrap #}
   {% load bootstrap3 %}
   {% bootstrap_css %}
@@ -20,7 +20,7 @@
   <link href="{% static 'bootstrap-material-design/dist/css/material-wfont.min.css' %}" rel="stylesheet">
 
   {# facebook #}
-  <script src="{% static 'testing.js' %}"></script>
+  <script src="{% static 'app.js' %}"></script>
 
   <title>{% block title %} GoodBets {% endblock %}</title>
   <meta charset="utf-8">
@@ -49,10 +49,12 @@
             <li><a class="{% active request profile %}" href="../profile">Profile</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
+            <li><h4 class="navbar-text" id="status"> </h4></li>
             <li><a href="#">About us</a></li>
             <li><a href="#">Register</a></li>
-            <li class='{% active request asdf %}'><a href="../">Login</a></li>
+            <li id="login" class='{% active request asdf %}'><a href="/login">Login</a></li>
           </ul>
+
         </div><!--/.nav-collapse -->
       </div>
     </div>

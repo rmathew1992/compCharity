@@ -10,6 +10,9 @@ from goodbets.models import User, Challenge, Bet
 def index(request):
     return TemplateResponse(request,'index.html')
 
+def login(request):
+    return TemplateResponse(request,'login.html')
+
 def profile(request):
     user_list = User.objects.all()
     challenge_list = Challenge.objects.all()
