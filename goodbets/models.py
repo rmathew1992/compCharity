@@ -2,8 +2,8 @@ from django.db import models
 
 class User(models.Model):
 	"""
-	Each User has class variables, each which represents a database field in
-	the model.
+	Each User has class variables, each which represents a database
+	field in the model.
 
 	Class Variables
 	---------------
@@ -21,8 +21,8 @@ class Challenge(models.Model):
 	Challenges are created by challengers (a type of users) aimed at
 	challengees (a type of user) who must fulfill the challenge.
 
-	Each Challenge has class variables, each which represents a database field
-	in the model.
+	Each Challenge has class variables, each which represents a 
+	database field in the model.
 
 	Class Variables
 	---------------
@@ -41,10 +41,11 @@ class Challenge(models.Model):
 
 class Bet(models.Model):
 	"""
-	Bets are fundamentally controlled by the individual user making the bet.
+	Bets are fundamentally controlled by the individual user making the
+	bet.
 
-	Each Bet has class variables, each which represents a database field in the
-	model.
+	Each Bet has class variables, each which represents a database field 
+	in themodel.
 
 	Class Variables
 	---------------
@@ -59,3 +60,9 @@ class Bet(models.Model):
 
 	user = models.ForeignKey('User')
 	amount = models.FloatField(default=0.15)
+
+class Charity(models.Model):
+	"""Charities are the destination to where the
+	challenge monies go
+	"""
+	name = models.CharField(default='', max_length=50)
