@@ -30,24 +30,42 @@ def challenge(request):
             # process the data in form.cleaned_data as required
             
             # get current User model from Session?
-            # current_user = 
-            u = User(username='Ryan')
-            u.save()            
-            new_bet = Bet(user=u, amount=1) # hardcoded for now
+            # current_user =
+            
+            # # charity debug
+            # print "charity: ", form.cleaned_data['charity']
+            # print type(form.cleaned_data['charity']) # works
+            # challengees debug
+            # print type(form.cleaned_data['challengees'])
+            # for c in form.cleaned_data['challengees']:
+            #     print type(c)
+            
+            # Create Bet
+            session_user = User.objects.get(pk=1) # Hardcoded, will fix
+            new_bet = Bet(
+                user=session_user,
+                amount=form.cleaned_data['bet_amount']
+                )
             new_bet.save()
-            new_challengee0 = User(username='Nitya')
-            new_challengee0.save()
-            new_challengee1 = User(username='Kevin')
-            new_challengee1.save()
-
-            new_challenge = Challenge(title=form.cleaned_data['title'], 
-                                      description=form.cleaned_data['description'])
-                        
+            
+            # Create Challenge
+            new_challenge = Challenge(
+                title=form.cleaned_data['title'],
+                description=form.cleaned_data['description'],
+                charity=form.cleaned_data['charity'],
+                )
             new_challenge.save()
+
+            # Associate Bet with Challenge
             new_challenge.bets.add(new_bet)
-            new_challenge.challengees.add(new_challengee0)
 
+            # Associate Challengees with Challenge
+            for challengee in form.cleaned_data['challengees']:
+                new_challenge.challengees.add(challengee)
+
+            # Update Challenge associations
             new_challenge.save()
+            
             # redirect to a new URL:
             return redirect('profile')
 

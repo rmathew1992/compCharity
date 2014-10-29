@@ -3,12 +3,14 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Div, Submit, HTML, Button, Row, Field
 from crispy_forms.bootstrap import AppendedText, PrependedText, FormActions
 
+from goodbets.models import User, Charity
+
 class ChallengeForm(forms.Form):
     title = forms.CharField(max_length=150)
-    description = forms.CharField(widget=forms.Textarea)
-    bet = forms.FloatField()
-    challengees = forms.CharField()
-
+    description = forms.CharField(widget=forms.TextInput)
+    bet_amount = forms.FloatField(min_value=0)
+    challengees = forms.ModelMultipleChoiceField(User.objects.all())
+    charity = forms.ModelChoiceField(Charity.objects.all())
     # django-crispy-forms
     # gist example: 
     # https://github.com/maraujop/django-crispy-forms#example
@@ -18,10 +20,10 @@ class ChallengeForm(forms.Form):
     helper.form_class = 'form-horizontal'
     helper.layout = Layout(
         Field('title', css_class='input-xlarge'),
+        Field('challengees', css_class='input-xlarge'),
+        Field('charity', css_class='input-xlarge'),
+        Field('bet_amount'),
         Field('description', css_class='input-xlarge'),
-        AppendedText('bet', '.00'), # dollars x, $x.00
-        PrependedText('challengees', '@'),
-        'multicolon_select',
         FormActions(
             Submit('save_changes', 'Save changes', css_class="btn-primary"),
             Submit('cancel', 'Cancel'),
