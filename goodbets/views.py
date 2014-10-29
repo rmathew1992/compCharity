@@ -60,6 +60,9 @@ def challenge(request):
 def home(request):
     return render(request, 'home.html', {'request': request})
 
+def about(request):
+    return render(request, 'about.html', {'request': request})
+
 def material(request):
     return render(request, 'material-demo.html')
 
