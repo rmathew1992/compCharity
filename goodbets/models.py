@@ -38,6 +38,7 @@ class Challenge(models.Model):
 	description = models.TextField()
 	bets = models.ManyToManyField('Bet')
 	challengees = models.ManyToManyField('User')
+	charity = models.ForeignKey('Charity')
 
 class Bet(models.Model):
 	"""
@@ -60,7 +61,6 @@ class Bet(models.Model):
 
 	user = models.ForeignKey('User')
 	amount = models.FloatField(default=0.15)
-	charity = models.ForeignKey('Charity')
 
 class Charity(models.Model):
 	"""Charities are the destination to where the
