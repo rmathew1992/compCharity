@@ -3,10 +3,13 @@
 {% block body %}
     	
     <div class="jumbotron">
-  		<h1>Please login to continue</h1>
-    	<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-    	</fb:login-button>
-    	<div id="login_message"></div>
+  		<div id="login-info">
+  		  	<h1>Please login to continue</h1>
+    		<fb:login-button scope="public_profile,email" id="fb-icon" onlogin="checkLoginState();">
+    		</fb:login-button>
+    		<div id="login_message"></div>
+    	</div>
+    	<button id="logout" style="visibility:hidden">Logout</button>
 	</div>
 
 {% endblock body %}

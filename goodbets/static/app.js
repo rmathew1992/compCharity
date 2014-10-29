@@ -1,7 +1,6 @@
 // This is called with the results from from FB.getLoginStatus().
   function statusChangeCallback(response) {
     console.log('statusChangeCallback');
-    console.log(response);
     // The response object is returned with a status field that lets the
     // app know the current login status of the person.
     // Full docs on the response object can be found in the documentation
@@ -69,18 +68,27 @@
   // Here we run a very simple test of the Graph API after login is
   // successful.  See statusChangeCallback() for when this call is made.
   function testAPI() {
-    console.log('Welcome!  Fetching your information.... ');
-    FB.api('/me', function(response) {
-      console.log('Successful login for: ' + response.name);
-      document.getElementById('status').innerHTML =
-       response.name;
-      document.getElementById('login_message').innerHTML =
-       "You've been successfully logged in " + response.name; 
-    });
-    $( "#login").replaceWith( '<li><button type="button" id="logout" class="btn btn-default navbar-btn">Logout</button></li>' );
+      console.log('Welcome!  Fetching your information.... ');
+            FB.api('/me', function(response) {
+        console.log('Successful login for: ' + response.name);
+        document.getElementById('status').innerHTML = response.name;
+        login_string = document.getElementById('login_link').innerHTML
+        login = login_string.replace("Login", "Logout");
+        document.getElementById("login_link").innerHTML = login;
+        $("#login-info").hide();
+        $('#logout').show();
+        $('#logout').on("click",function(){
+          FB.logout(function(response) {
+            // user is now logged out
+            console.log('User is now logged out');
+            $('#logout').hide();
+          });
+        });
+
+    })
   }
 
-  $(document).on("click", "#profile", function(){
+  $('#profile').on("click", function(){
     FB.api('/me', function(response) {
       $.get('/profile',response)
         .done(function(data){
@@ -89,6 +97,8 @@
           alert("Error:", e);
         });  
   });
-
 });
+
+console.log('Testing');
+
 
