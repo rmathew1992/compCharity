@@ -60,9 +60,13 @@ class Bet(models.Model):
 
 	user = models.ForeignKey('User')
 	amount = models.FloatField(default=0.15)
+	charity = models.ForeignKey('Charity')
 
 class Charity(models.Model):
 	"""Charities are the destination to where the
 	challenge monies go
 	"""
+	def __str__(self):
+		return str(self.name)
+
 	name = models.CharField(default='', max_length=50)
