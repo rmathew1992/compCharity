@@ -1,10 +1,13 @@
 {% extends "base.html" %}
 
 {% block body %}
-    <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-    </fb:login-button>
-    <div id="status">
-    </div>
+	<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+	</fb:login-button>
+	<div id="status">
+	</div>
+	<div>
+		
+	</div>
 
-    <button type="button" id="logout"> Log out </button>
+	<button type="button" id="logout"> Log out </button>
 {% endblock body %}
