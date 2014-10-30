@@ -17,9 +17,13 @@ def login(request):
 def profile(request):
    if request.method == 'GET':
     try:
-        #if the user does not exist save to DB
-        if not User.objects.filter(username=request.GET.values()).exists():
-            User(username=request.GET.values()).save()
+        rgv = request.GET.values()
+        if len(rgv) == 1 and rgv[0] != '':
+            username = rgv[0]
+            username = username.encode('utf-8')
+            #if the user does not exist save to DB
+            if not User.objects.filter(username=username).exists():
+                User(username=username).save()
     except Exception as e:
         print e
     user_list = User.objects.all()
@@ -51,8 +55,10 @@ def challenge(request):
             # for c in form.cleaned_data['challengees']:
             #     print type(c)
             
-            # Create Bet
+            # Get Session User
             session_user = User.objects.get(pk=1) # Hardcoded, will fix
+
+            # Create Bet
             new_bet = Bet(
                 user=session_user,
                 amount=form.cleaned_data['bet_amount']
