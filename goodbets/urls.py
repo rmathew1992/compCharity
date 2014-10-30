@@ -9,6 +9,7 @@ urlpatterns = patterns('',
     url(r'^profile/', views.profile, name='profile'),
     url(r'^challenge/', views.challenge, name='challenge'),
     url(r'^home/', views.home, name='home'),
+    url(r'^login/', views.login, name='login'),
     url(r'^material/', views.material, name='material-design'),
 )
 
