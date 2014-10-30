@@ -6,3 +6,11 @@ pip install -r requirements.txt
 
 When editing HTML, use two spaces for tabs.
 When editing python, use four spaces for tabs.
+
+To read the logs, run in a free terminal:
+tail -f goodbets.log
+
+To print log statements from python:
+import logging
+logger = logging.getLogger(__name__)
+logger.debug('any varable: %s' % anyVariable)
