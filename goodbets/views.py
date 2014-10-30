@@ -14,6 +14,13 @@ def login(request):
     return TemplateResponse(request,'login.html')
 
 def profile(request):
+   if request.method == 'GET':
+    try:
+        #if the user does not exist save to DB
+        if not User.objects.filter(username=request.GET.values()).exists():
+            User(username=request.GET.values()).save()
+    except Exception as e:
+        print e
     user_list = User.objects.all()
     challenge_list = Challenge.objects.all()
     context = {
