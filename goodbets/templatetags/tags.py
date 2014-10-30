@@ -7,6 +7,7 @@ register = template.Library()
 
 @register.simple_tag
 def active(request, pattern):
+    logger.debug('pattern type %s' % (pattern))
     if pattern in request.path:
         return 'active'
     else:

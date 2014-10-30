@@ -5,7 +5,8 @@ from django.shortcuts import get_object_or_404, render, redirect
 from goodbets.forms import ChallengeForm
 from django.forms import ModelForm
 from goodbets.models import User, Challenge, Bet
-
+import logging
+logger = logging.getLogger(__name__)
 
 def index(request):
     return TemplateResponse(request,'index.html')
