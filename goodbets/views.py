@@ -5,12 +5,23 @@ from django.shortcuts import get_object_or_404, render, redirect
 from goodbets.forms import ChallengeForm
 from django.forms import ModelForm
 from goodbets.models import User, Challenge, Bet
-
+import logging
+logger = logging.getLogger(__name__)
 
 def index(request):
     return TemplateResponse(request,'index.html')
 
+def login(request):
+    return TemplateResponse(request,'login.html')
+
 def profile(request):
+   if request.method == 'GET':
+    try:
+        #if the user does not exist save to DB
+        if not User.objects.filter(username=request.GET.values()).exists():
+            User(username=request.GET.values()).save()
+    except Exception as e:
+        print e
     user_list = User.objects.all()
     challenge_list = Challenge.objects.all()
     context = {
@@ -85,3 +96,6 @@ def material(request):
 #         # It should return an HttpResponse.
 #         # DO STUFF (i.e CRUD to DB)
 #       return super(ChallengeView, self).form_valid(form)
+
+
+
