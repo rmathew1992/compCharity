@@ -6,6 +6,7 @@ from crispy_forms.bootstrap import AppendedText, PrependedText, FormActions
 from goodbets.models import User, Charity
 
 class ChallengeForm(forms.Form):
+    challenger = forms.CharField()
     title = forms.CharField(max_length=150)
     description = forms.CharField(widget=forms.TextInput)
     bet_amount = forms.FloatField(min_value=0)
@@ -19,6 +20,8 @@ class ChallengeForm(forms.Form):
     helper.form_id = "Wrapper"
     helper.form_class = 'form-horizontal'
     helper.layout = Layout(
+        # in app.js, the elements of id='status' will take on value = request.name
+        Field('challenger', type='hidden', id='challenger'),
         Field('title', css_class='input-xlarge'),
         Field('challengees', css_class='input-xlarge'),
         Field('charity', css_class='input-xlarge'),

@@ -18,10 +18,14 @@ def profile(request):
    if request.method == 'GET':
     try:
         rgv = request.GET.values()
+        logger.debug('requestgetvalues: %s' % rgv)
         if len(rgv) == 1 and rgv[0] != '':
+            # Turn FB name into "First Last" format
             username = rgv[0]
             username = username.encode('utf-8')
-            #if the user does not exist save to DB
+            # Store user to session
+            request.session["username"] = username
+            # If the user does not exist save to DB
             if not User.objects.filter(username=username).exists():
                 User(username=username).save()
     except Exception as e:
@@ -56,7 +60,8 @@ def challenge(request):
             #     print type(c)
             
             # Get Session User
-            session_user = User.objects.get(pk=1) # Hardcoded, will fix
+            challenger_name = form.cleaned_data['challenger']
+            session_user = User.objects.get(username=challenger_name)
 
             # Create Bet
             new_bet = Bet(
