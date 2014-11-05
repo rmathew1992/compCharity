@@ -1,0 +1,95 @@
+- fields: {username: Ryan Louie}
+  model: goodbets.user
+  pk: 1
+- fields: {username: Greg Coleman}
+  model: goodbets.user
+  pk: 2
+- fields: {username: Rachel Mathew}
+  model: goodbets.user
+  pk: 3
+- fields: {username: Kevin O'Toole}
+  model: goodbets.user
+  pk: 4
+- fields: {username: Nitya Dhanushkodi}
+  model: goodbets.user
+  pk: 5
+- fields: {username: Zoher Ghadyali}
+  model: goodbets.user
+  pk: 6
+- fields: {username: '[]'}
+  model: goodbets.user
+  pk: 7
+- fields:
+    challengees: [2, 3, 4, 5, 6]
+    charity: 3
+    chipins: [2]
+    description: If we finish MVP, we will use our $400 dollars to match challenge
+      donations
+    title: Finish MVP
+  model: goodbets.challenge
+  pk: 1
+- fields:
+    challengees: [1]
+    charity: 1
+    chipins: [3]
+    description: he's debugging, but will mvp happen?!
+    title: ryan finishes django app
+  model: goodbets.challenge
+  pk: 2
+- fields:
+    challengees: [1]
+    charity: 2
+    chipins: [4]
+    description: testing hidden form fields
+    title: test
+  model: goodbets.challenge
+  pk: 3
+- fields:
+    challengees: [1, 3]
+    charity: 5
+    chipins: [5]
+    description: 'test foo: name'
+    title: Foo
+  model: goodbets.challenge
+  pk: 4
+- fields:
+    challengees: [4]
+    charity: 1
+    chipins: [6]
+    description: indico interview in 5 minutes, challenger better be Ryan Louie
+    title: indico
+  model: goodbets.challenge
+  pk: 5
+- fields: {amount: 2.5, user: 1}
+  model: goodbets.chipin
+  pk: 1
+- fields: {amount: 2.5, user: 1}
+  model: goodbets.chipin
+  pk: 2
+- fields: {amount: 2.0, user: 1}
+  model: goodbets.chipin
+  pk: 3
+- fields: {amount: 1.0, user: 1}
+  model: goodbets.chipin
+  pk: 4
+- fields: {amount: 1.0, user: 1}
+  model: goodbets.chipin
+  pk: 5
+- fields: {amount: 5.0, user: 1}
+  model: goodbets.chipin
+  pk: 6
+- fields: {name: Olin College}
+  model: goodbets.charity
+  pk: 1
+- fields: {name: Khan Academy}
+  model: goodbets.charity
+  pk: 2
+- fields: {name: JDRF}
+  model: goodbets.charity
+  pk: 3
+- fields: {name: Doctors without Borders}
+  model: goodbets.charity
+  pk: 4
+- fields: {name: Engineers without Borders}
+  model: goodbets.charity
+  pk: 5
