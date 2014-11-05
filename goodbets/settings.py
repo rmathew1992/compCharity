@@ -43,7 +43,7 @@ INSTALLED_APPS = (
     'djangobower',
 )
 
-CRISPY_TEMPLATE_PACK = 'bootstrap'
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 STATICFILES_FINDERS = (
     'djangobower.finders.BowerFinder',

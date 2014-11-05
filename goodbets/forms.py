@@ -17,18 +17,23 @@ class ChallengeForm(forms.Form):
     # https://github.com/maraujop/django-crispy-forms#example
     # https://gist.github.com/maraujop/1838193
     helper = FormHelper()
-    helper.form_id = "Wrapper"
     helper.form_class = 'form-horizontal'
+    # bootstrap stuff
+    # http://stackoverflow.com/questions/19865158/what-is-the-difference-among-col-lg-col-md-and-col-sm-in-twitter-bootstra
+    helper.label_class = 'col-lg-2 control-label'
+    helper.field_class = 'col-lg-8 control-label' # form-control
+    helper.form_id = "Wrapper"
     helper.layout = Layout(
         # in app.js, the elements of id='status' will take on value = request.name
         Field('challenger', type='hidden', id='challenger'),
-        Field('title', css_class='input-xlarge'),
-        Field('challengees', css_class='input-xlarge'),
-        Field('charity', css_class='input-xlarge'),
+        Field('title'),
+        Field('challengees'),
+        Field('charity'),
         Field('bet_amount'),
-        Field('description', css_class='input-xlarge'),
-        FormActions(
-            Submit('save_changes', 'Save changes', css_class="btn-primary"),
-            Submit('cancel', 'Cancel'),
-        )
+        Field('description'),
+        Div(FormActions(
+                Submit('save_changes', 'Save changes', css_class="btn btn-primary"),
+                Submit('cancel', 'Cancel', css_class="btn btn-default"),
+            ),
+            css_class="col-lg-10 col-lg-offset-2")
     )
