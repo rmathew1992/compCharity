@@ -10,7 +10,8 @@ urlpatterns = patterns('',
     url(r'^challenge/', views.challenge, name='challenge'),
     url(r'^home/', views.home, name='home'),
     url(r'^about/', views.about, name='about'),
-
+    url(r'^login/', views.login, name='login'),
+    url(r'^material/', views.material, name='material-design'),
 )
 
 urlpatterns += staticfiles_urlpatterns()
