@@ -101,7 +101,18 @@ def home(request):
     return render(request, 'home.html', {'request': request})
 
 def about(request):
-    return render(request, 'about.html', {'request': request})
+    return render(request, 'about.html', {'request': request},)
+def feed(request):
+    user_list = User.objects.all()
+    challenge_list = Challenge.objects.all()
+    context = {
+        'user_list': user_list, 
+        'challenge_list': challenge_list, 
+        'request': request,
+    }
+    return render(request, 'feed.html', context)
+
+
 
 def material(request):
     return render(request, 'material-demo.html')

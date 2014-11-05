@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %} Goodbets | Home {% endblock title %}
+
+{% block body %}
+	{% for challenge in challenge_list %}
+	  <div class="jumbotron">
+	    <h1>Challenge List
+		{{ challenge }}</h1>
+	    <p>
+	    	{{ challenge.description }}
+	    </p>
+	  </div>
+	{% endfor %}
+{% endblock body %}
