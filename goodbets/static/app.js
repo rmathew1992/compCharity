@@ -74,6 +74,9 @@ function testAPI() {
       console.log('Successful login for: ' + response.name);
       document.getElementById('status').innerHTML = response.name;
       
+      // Hidden form filling for Logged In User
+      document.getElementById('challenger').value = response.name;
+
       //replacing the text in the navigation bar
       login_string = document.getElementById('login_link').innerHTML
       login = login_string.replace("Login", "Logout");

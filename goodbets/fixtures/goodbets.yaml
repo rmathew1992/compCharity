@@ -1,0 +1,48 @@
+-   fields: {username: Ryan Louie}
+    model: goodbets.user
+    pk: 1
+-   fields: {username: Greg Coleman}
+    model: goodbets.user
+    pk: 2
+-   fields: {username: Rachel Mathew}
+    model: goodbets.user
+    pk: 3
+-   fields: {username: Kevin O'Toole}
+    model: goodbets.user
+    pk: 4
+-   fields: {username: Nitya Dhanushkodi}
+    model: goodbets.user
+    pk: 5
+-   fields: {username: Zoher Ghadyali}
+    model: goodbets.user
+    pk: 6
+-   fields:
+        bets: [2]
+        challengees: [2, 3, 4, 5, 6]
+        charity: 3
+        description: If we finish MVP, we will use our $400 dollars to match challenge
+            donations
+        title: Finish MVP
+    model: goodbets.challenge
+    pk: 1
+-   fields: {amount: 2.5, user: 1}
+    model: goodbets.bet
+    pk: 1
+-   fields: {amount: 2.5, user: 1}
+    model: goodbets.bet
+    pk: 2
+-   fields: {name: Olin College}
+    model: goodbets.charity
+    pk: 1
+-   fields: {name: Khan Academy}
+    model: goodbets.charity
+    pk: 2
+-   fields: {name: JDRF}
+    model: goodbets.charity
+    pk: 3
+-   fields: {name: Doctors without Borders}
+    model: goodbets.charity
+    pk: 4
+-   fields: {name: Engineers without Borders}
+    model: goodbets.charity
+    pk: 5
