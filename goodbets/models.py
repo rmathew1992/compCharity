@@ -60,7 +60,8 @@ class Chipin(models.Model):
 		return str(self.user) + str(self.amount)
 
 	user = models.ForeignKey('User')
-	amount = models.FloatField(default=0.15)
+	amount = models.FloatField()
+	is_challenger = models.BooleanField(default='False')
 
 class Charity(models.Model):
 	"""Charities are the destination to where the
