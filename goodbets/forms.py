@@ -9,7 +9,7 @@ class ChallengeForm(forms.Form):
     challenger = forms.CharField()
     title = forms.CharField(max_length=150)
     description = forms.CharField(widget=forms.TextInput)
-    bet_amount = forms.FloatField(min_value=0)
+    chipin_amount = forms.FloatField(min_value=0)
     challengees = forms.ModelMultipleChoiceField(User.objects.all())
     charity = forms.ModelChoiceField(Charity.objects.all())
     # django-crispy-forms
@@ -29,7 +29,7 @@ class ChallengeForm(forms.Form):
         Field('title'),
         Field('challengees'),
         Field('charity'),
-        Field('bet_amount'),
+        Field('chipin_amount'),
         Field('description'),
         Div(FormActions(
                 Submit('save_changes', 'Save changes', css_class="btn btn-primary"),

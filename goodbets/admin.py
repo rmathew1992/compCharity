@@ -1,6 +1,6 @@
 from django.contrib import admin
-from goodbets.models import User, Challenge, Bet
+from goodbets.models import User, Challenge, Chipin
 
 admin.site.register(User)
 admin.site.register(Challenge)
-admin.site.register(Bet)
+admin.site.register(Chipin)

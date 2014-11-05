@@ -4,7 +4,7 @@ from django.template.response import TemplateResponse
 from django.shortcuts import get_object_or_404, render, redirect
 from goodbets.forms import ChallengeForm
 from django.forms import ModelForm
-from goodbets.models import User, Challenge, Bet
+from goodbets.models import User, Challenge, Chipin
 import logging
 logger = logging.getLogger(__name__)
 
@@ -46,29 +46,16 @@ def challenge(request):
         form = ChallengeForm(request.POST)
         # check whether it's valid:
         if form.is_valid():
-            # process the data in form.cleaned_data as required
-            
-            # get current User model from Session?
-            # current_user =
-            
-            # # charity debug
-            # print "charity: ", form.cleaned_data['charity']
-            # print type(form.cleaned_data['charity']) # works
-            # challengees debug
-            # print type(form.cleaned_data['challengees'])
-            # for c in form.cleaned_data['challengees']:
-            #     print type(c)
-            
             # Get Session User
             challenger_name = form.cleaned_data['challenger']
             session_user = User.objects.get(username=challenger_name)
 
-            # Create Bet
-            new_bet = Bet(
+            # Create Chipin
+            new_chipin = Chipin(
                 user=session_user,
-                amount=form.cleaned_data['bet_amount']
+                amount=form.cleaned_data['chipin_amount']
                 )
-            new_bet.save()
+            new_chipin.save()
             
             # Create Challenge
             new_challenge = Challenge(
@@ -78,8 +65,8 @@ def challenge(request):
                 )
             new_challenge.save()
 
-            # Associate Bet with Challenge
-            new_challenge.bets.add(new_bet)
+            # Associate Chipin with Challenge
+            new_challenge.chipins.add(new_chipin)
 
             # Associate Challengees with Challenge
             for challengee in form.cleaned_data['challengees']:
@@ -102,29 +89,3 @@ def home(request):
 
 def material(request):
     return render(request, 'material-demo.html')
-
-# class ChallengeCreate(CreateView):
-#   model = Challenge
-#   fields = ['title', 'description', 'bet', 'challengees']
-
-# class ChallengeUpdate(UpdateView):
-#   model = Challenge
-#   fields = ['title', 'description', 'bet', 'challengees']
-
-# class ChallengeDelete(DeleteView):
-#     model = Challenge
-#     success_url = reverse_lazy('challenge-list')
-    
-# class ChallengeView(FormView):
-#   template_name = 'challenge.html'
-#   form_class = ChallengeForm
-#   success_url = '/profile/'
-
-#   def form_valid(self, form):
-#       # This method is called when valid form data has been POSTed.
-#         # It should return an HttpResponse.
-#         # DO STUFF (i.e CRUD to DB)
-#       return super(ChallengeView, self).form_valid(form)
-
-
-
