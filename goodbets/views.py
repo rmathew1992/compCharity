@@ -1,7 +1,7 @@
 
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.template.response import TemplateResponse
-from django.shortcuts import get_object_or_404, render, redirect
+from django.shortcuts import get_object_or_404, get_list_or_404, render, redirect
 from goodbets.forms import ChallengeForm
 from django.forms import ModelForm
 from goodbets.models import User, Challenge, Chipin
@@ -32,9 +32,11 @@ def profile(request):
         print e
     user_list = User.objects.all()
     challenge_list = Challenge.objects.all()
+    bet_list = Bet.objects.all()
     context = {
         'user_list': user_list, 
         'challenge_list': challenge_list, 
+        'bet_list': bet_list,
         'request': request,
     }
     return render(request, 'profile.html', context)

@@ -54,3 +54,6 @@ target/
 
 # macs to the max
 *.DS_Store
+
+#databases should not conflict
+*db.sqlite
