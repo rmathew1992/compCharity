@@ -15,3 +15,4 @@ six==1.8.0
 static3==0.5.1
 stripe==1.7.9
 wsgiref==0.1.2
+PyYAML==3.11
