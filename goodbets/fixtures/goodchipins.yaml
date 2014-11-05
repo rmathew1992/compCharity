@@ -16,9 +16,6 @@
 - fields: {username: Zoher Ghadyali}
   model: goodbets.user
   pk: 6
-- fields: {username: '[]'}
-  model: goodbets.user
-  pk: 7
 - fields:
     challengees: [2, 3, 4, 5, 6]
     charity: 3
