@@ -89,5 +89,16 @@ def challenge(request):
 def home(request):
     return render(request, 'home.html', {'request': request})
 
+def about(request):
+    return render(request, 'about.html', {'request': request},)
+def feed(request):
+    challenge_list = Challenge.objects.all()
+    context = {
+        'challenge_list': challenge_list, 
+    }
+    return render(request, 'feed.html', context)
+
+
+
 def material(request):
     return render(request, 'material-demo.html')
