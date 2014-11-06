@@ -32,11 +32,11 @@ def profile(request):
         print e
     user_list = User.objects.all()
     challenge_list = Challenge.objects.all()
-    bet_list = Bet.objects.all()
+    chipin_list = Chipin.objects.all()
     context = {
         'user_list': user_list, 
         'challenge_list': challenge_list, 
-        'bet_list': bet_list,
+        'chipin_list': chipin_list,
         'request': request,
     }
     return render(request, 'profile.html', context)
