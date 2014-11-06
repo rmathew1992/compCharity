@@ -36,11 +36,11 @@ class Challenge(models.Model):
 
 	title = models.CharField(default='', max_length=150)
 	description = models.TextField()
-	bets = models.ManyToManyField('Bet')
+	chipins = models.ManyToManyField('Chipin')
 	challengees = models.ManyToManyField('User')
 	charity = models.ForeignKey('Charity')
 
-class Bet(models.Model):
+class Chipin(models.Model):
 	"""
 	Bets are fundamentally controlled by the individual user making the
 	bet.
@@ -60,7 +60,8 @@ class Bet(models.Model):
 		return str(self.user) + str(self.amount)
 
 	user = models.ForeignKey('User')
-	amount = models.FloatField(default=0.15)
+	amount = models.FloatField()
+	is_challenger = models.BooleanField(default='False')
 
 class Charity(models.Model):
 	"""Charities are the destination to where the

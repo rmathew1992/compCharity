@@ -11,21 +11,32 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Bet',
+            name='Challenge',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('amount', models.FloatField(default=0.15)),
+                ('title', models.CharField(default=b'', max_length=150)),
+                ('description', models.TextField()),
             ],
             options={
             },
             bases=(models.Model,),
         ),
         migrations.CreateModel(
-            name='Challenge',
+            name='Charity',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('description', models.TextField()),
-                ('bets', models.ManyToManyField(to='goodbets.Bet')),
+                ('name', models.CharField(default=b'', max_length=50)),
+            ],
+            options={
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Chipin',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('amount', models.FloatField()),
+                ('is_challenger', models.BooleanField(default=b'False')),
             ],
             options={
             },
@@ -35,11 +46,17 @@ class Migration(migrations.Migration):
             name='User',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('username', models.CharField(max_length=200)),
+                ('username', models.CharField(max_length=50)),
             ],
             options={
             },
             bases=(models.Model,),
+        ),
+        migrations.AddField(
+            model_name='chipin',
+            name='user',
+            field=models.ForeignKey(to='goodbets.User'),
+            preserve_default=True,
         ),
         migrations.AddField(
             model_name='challenge',
@@ -48,9 +65,15 @@ class Migration(migrations.Migration):
             preserve_default=True,
         ),
         migrations.AddField(
-            model_name='bet',
-            name='user',
-            field=models.ForeignKey(to='goodbets.User'),
+            model_name='challenge',
+            name='charity',
+            field=models.ForeignKey(to='goodbets.Charity'),
+            preserve_default=True,
+        ),
+        migrations.AddField(
+            model_name='challenge',
+            name='chipins',
+            field=models.ManyToManyField(to='goodbets.Chipin'),
             preserve_default=True,
         ),
     ]
