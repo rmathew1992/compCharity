@@ -1,15 +1,40 @@
 {% extends "base.html" %}
+{% load tags %}
 
 {% block title %} Goodbets | Home {% endblock title %}
 
 {% block body %}
 	{% for challenge in challenge_list %}
 	  <div class="jumbotron">
-	    <h1>Challenge List
-		{{ challenge }}</h1>
-	    <p>
-	    	{{ challenge.description }}
-	    </p>
+		<h1>{{ challenge }}</h1>
+		<p>
+			{{ challenge.description }}
+		</p>
+		<p>
+			Support
+			<a href="javascript:void(0)" class="btn btn-danger btn-raised">{{ challenge.charity }}</a>
+		</p>
+		<p>
+			<h4> Challengees </h4>
+			<div class="list-group">
+				{% for challengee in challenge.challengees.all %}
+		    	<div class="list-group-item">
+		        <div class="row-picture">
+		            <img class="circle" src="http://www.faithlineprotestants.org/wp-content/uploads/2010/12/facebook-default-no-profile-pic.jpg" alt="icon">
+		        </div>
+		        <div class="row-content">
+		            <h4 class="list-group-item-heading">{{challengee}}</h4>
+		            <p> A champion indeed! </p>
+		        </div>
+		   		</div>
+		    	<div class="list-group-separator"></div>
+				{% endfor %}
+			</div>
+		</p>
+		<p>
+			<a href="javascript:void(0)" class="btn btn-danger btn-raised">TOTAL POT ${{ challenge.chipins.all|calculate_pot }}</a>
+			<a class="btn btn-lg btn-primary" href="../challenge" role="button">Chipin +${{challenge.title|length}}</a>
+		</p>
 	  </div>
 	{% endfor %}
 {% endblock body %}

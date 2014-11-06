@@ -92,12 +92,9 @@ def home(request):
 def about(request):
     return render(request, 'about.html', {'request': request},)
 def feed(request):
-    user_list = User.objects.all()
     challenge_list = Challenge.objects.all()
     context = {
-        'user_list': user_list, 
         'challenge_list': challenge_list, 
-        'request': request,
     }
     return render(request, 'feed.html', context)
 
