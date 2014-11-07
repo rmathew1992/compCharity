@@ -1,6 +1,7 @@
 // This is called with the results from from FB.getLoginStatus().
 function statusChangeCallback(response) {
   console.log('statusChangeCallback');
+  console.log(response);
   // The response object is returned with a status field that lets the
   // app know the current login status of the person.
   // Full docs on the response object can be found in the documentation
@@ -8,7 +9,7 @@ function statusChangeCallback(response) {
   if (response.status === 'connected') {
     // Logged into your app and Facebook.
     testAPI();
-    logout()
+    status = "loggedIn";
   } else if (response.status === 'not_authorized') {
     // The person is logged into Facebook, but not your app.
     document.getElementById('status').innerHTML = 'Please log ' +
@@ -18,6 +19,7 @@ function statusChangeCallback(response) {
     // they are logged into this app or not.
     document.getElementById('status').innerHTML = 'Please log ' +
       'into Facebook.';
+      status="loggedOut";
   }
 }
 
@@ -28,7 +30,16 @@ function checkLoginState() {
   FB.getLoginStatus(function(response) {
     statusChangeCallback(response);
   });
-}
+  if(status === "loggedIn"){
+    FB.api('/me', function(response){
+     $.get( "/profile",{ "name": [response.name] })
+      .done(function( data ) {
+      var url = "/profile";    
+      $(location).attr('href',url);
+    });
+  });  
+  }
+};
 
 window.fbAsyncInit = function() {
 FB.init({
@@ -72,44 +83,9 @@ function testAPI() {
     console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', function(response) {
       console.log('Successful login for: ' + response.name);
-      document.getElementById('status').innerHTML = response.name;
+      document.getElementById('profile_nav').innerHTML = response.name;
       
       // Hidden form filling for Logged In User
       document.getElementById('challenger').value = response.name;
-
-      //replacing the text in the navigation bar
-      login_string = document.getElementById('login_link').innerHTML
-      login = login_string.replace("Login", "Logout");
-      document.getElementById("login_link").innerHTML = login;
-
-      //hide and show button dance
-      $("#login-info").hide();
-      $("#logout").show();
-      $('#profile').show();
-
-      //when profile button is clicked send response name back to the view and render new page
-      $('#profile').click(function(){
-        console.log('clicked');
-        $.get( "/profile", { "name": [response.name] } )
-          .done(function( data ) {
-            var url = "/profile";    
-            $(location).attr('href',url);
-        });
-      });
     });
-}
-
-function logout(){
-  $('#logout').on("click",function(){
-        FB.logout(function(response) {
-          // user is now logged out
-          console.log('User is now logged out');
-          $('#logout').hide();
-          $('#profile').hide();
-          $("#login-info").show();
-        });
-      });
-}
-
-
-
+  }
