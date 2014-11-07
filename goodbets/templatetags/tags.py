@@ -2,7 +2,6 @@ from django import template
 import re
 import logging
 logger = logging.getLogger(__name__)
-
 register = template.Library()
 
 @register.simple_tag
