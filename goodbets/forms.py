@@ -37,3 +37,6 @@ class ChallengeForm(forms.Form):
             ),
             css_class="col-lg-10 col-lg-offset-2")
     )
+
+class ChipinForm(forms.Form):
+    challengeTitle = forms.CharField(max_length=150) 

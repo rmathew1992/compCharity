@@ -92,11 +92,18 @@ def home(request):
 def about(request):
     return render(request, 'about.html', {'request': request},)
 def feed(request):
-    challenge_list = Challenge.objects.all()
-    context = {
-        'challenge_list': challenge_list, 
-    }
-    return render(request, 'feed.html', context)
+    if request.method == 'POST':
+        form = ChipinForm(request.POST)
+
+        if form.is_valid():
+            print form.cleaned_data['challengeTitle']
+        challenge = Challenge.objects.get(title='blah')
+    else:
+        challenge_list = Challenge.objects.all()
+        context = {
+            'challenge_list': challenge_list, 
+        }
+        return render(request, 'feed.html', context)
 
 
 
