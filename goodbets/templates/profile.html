@@ -1,17 +1,27 @@
 {% extends "base.html" %}
+
+{% block title %} Goodbets | MyProfile {% endblock title %}
+
 {% block body %}
-  <div class='container-fluid'>
-  	<h1>Here are your challenges, NAME</h1>
-  		<p>Users you've challenged</p>
-			{{ user_list.0}}
+	<div class='container-fluid'>
+		<h1>Here are your challenges,</h1>
+        <h1 id='username'></h1>
 	</div>
+
+    {% for challenge in challenge_list %}
+      <div class="jumbotron">
+        <h1>{{ challenge }}</h1>
+        <p>{{ challenge.description }}</p>
+      </div>
+    {% endfor %}
+
 	<div class='container-fluid'>
 		Challenge List
-		{{ challenge_list }}
+        {{ user_list.0}}
 	</div>
 	<div class='container-fluid'>
-		ChipIn List
-		{{ bet_list }}
+			ChipIn List
+			{{ bet_list }}
 	</div>
 {% endblock body %}
 

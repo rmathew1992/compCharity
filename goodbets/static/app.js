@@ -77,6 +77,9 @@ function testAPI() {
       // Hidden form filling for Logged In User
       document.getElementById('challenger').value = response.name;
 
+      document.getElementById('username').innerHTML = response.name;
+
+
       //replacing the text in the navigation bar
       login_string = document.getElementById('login_link').innerHTML
       login = login_string.replace("Login", "Logout");
