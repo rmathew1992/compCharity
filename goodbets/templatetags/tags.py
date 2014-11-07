@@ -12,3 +12,7 @@ def active(request, pattern):
         return 'active'
     else:
         return ''
+
+@register.filter
+def calculate_pot(chipins):
+	return str(sum([chipin.amount for chipin in chipins]))

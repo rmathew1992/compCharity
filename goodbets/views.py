@@ -32,11 +32,11 @@ def profile(request):
         print e
     user_list = User.objects.all()
     challenge_list = Challenge.objects.all()
-    bet_list = Chipin.objects.all()
+    chipin_list = Chipin.objects.all()
     context = {
         'user_list': user_list, 
         'challenge_list': challenge_list, 
-        'bet_list': bet_list,
+        'chipin_list': chipin_list,
         'request': request,
     }
     return render(request, 'profile.html', context)
@@ -88,6 +88,17 @@ def challenge(request):
 
 def home(request):
     return render(request, 'home.html', {'request': request})
+
+def about(request):
+    return render(request, 'about.html', {'request': request},)
+def feed(request):
+    challenge_list = Challenge.objects.all()
+    context = {
+        'challenge_list': challenge_list, 
+    }
+    return render(request, 'feed.html', context)
+
+
 
 def material(request):
     return render(request, 'material-demo.html')

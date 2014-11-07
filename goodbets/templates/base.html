@@ -8,7 +8,10 @@
   {% url challenge as challenge %}
   {% url profile as profile %}
   {% url login as login %}
+  {% url about as about %}
+
   <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+
   {# bootstrap #}
   {% load bootstrap3 %}
   {% bootstrap_css %}
@@ -44,13 +47,14 @@
           <ul class="nav navbar-nav">
             <li class="{% active request home %}"><a href="../home">Home</a></li>
             <li><a class="{% active request challenge %}" href="../challenge">Bet</a></li>
-            <li><a class="{% active request feed %}" href="#">Feed</a></li>
+            <li><a class="{% active request feed %}" href="../feed">Feed</a></li>
             <li><a class="{% active request myBets %}" href="#">My Bets</a></li>
             <li><a class="{% active request profile %}" href="../profile">Profile</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
+            <li><a class='{% active request about %}' href="../about">About us</a></li>
             <li><h4 class="navbar-text" id="status"> </h4></li>
-            <li><a href="#">About us</a></li>
+          
             <li><a href="#">Register</a></li>
             <li class='{% active request login %}'><a href="../">Login</a></li>
           </ul>
