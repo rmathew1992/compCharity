@@ -35,9 +35,10 @@
 			<a href="javascript:void(0)" class="btn btn-danger btn-raised">TOTAL POT ${{ challenge.chipins.all|calculate_pot }}</a>
 			<form action='../feed/' method='post'>
 				{% csrf_token %}
-				{{challenge.title}}
+<!-- 				{{challenge.title}} -->
 				<input name='challengeTitle' type='text' value="{{challenge.title}}" hidden='true'>
 				<button type="submit" class="btn btn-primary">Chipin +$</button>
+				<input type="text" name="chipAmount" placeholder="Enter amount to chip in"> 
 			</form>
 		</p>
 	  </div>
