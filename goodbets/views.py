@@ -18,12 +18,13 @@ def login(request):
 def profile(request):
    if request.method == 'GET':
     try:
-        print request.GET.values()
         rgv = request.GET.values()
         logger.debug('requestgetvalues: %s' % rgv)
         if len(rgv) == 1 and rgv[0] != '':
             # Turn FB name into "First Last" format
             username = rgv[0]
+            print "Zoher is the dumps"
+            print username
             username = username.encode('utf-8')
             # Store user to session
             request.session["username"] = username
