@@ -39,6 +39,7 @@ class Challenge(models.Model):
 	chipins = models.ManyToManyField('Chipin')
 	challengees = models.ManyToManyField('User')
 	charity = models.ForeignKey('Charity')
+	datetime = models.DateTimeField(auto_now=True)
 
 class Chipin(models.Model):
 	"""
@@ -62,6 +63,7 @@ class Chipin(models.Model):
 	user = models.ForeignKey('User')
 	amount = models.FloatField()
 	is_challenger = models.BooleanField(default='False')
+	datetime = models.DateTimeField(auto_now=True)
 
 class Charity(models.Model):
 	"""Charities are the destination to where the
