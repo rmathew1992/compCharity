@@ -1,3 +1,5 @@
+
+
 """
 Django settings for goodbets project.
 
@@ -138,6 +140,7 @@ USE_L10N = True
 
 USE_TZ = True
 
+PAYPAL_RECEIVER_EMAIL = "a@a.com"
 
 TEMPLATE_DIRS = [os.path.join(PROJECT_ROOT, 'templates')]
 

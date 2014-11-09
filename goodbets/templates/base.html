@@ -3,13 +3,6 @@
 <head>
   {% load tags %}
 
-  {# url to navbar-tag translations #}
-  {% url home as home %}
-  {% url challenge as challenge %}
-  {% url profile as profile %}
-  {% url login as login %}
-  {% url about as about %}
-
   <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 
   {# bootstrap #}
@@ -21,6 +14,7 @@
   {% load staticfiles %}
   <link href="{% static 'bootstrap-material-design/dist/css/ripples.min.css' %}" rel="stylesheet">
   <link href="{% static 'bootstrap-material-design/dist/css/material-wfont.min.css' %}" rel="stylesheet">
+  <link rel="apple-touch-icon" type="image/png" href="{{ STATIC_URL }}logo.png"> {# This needs a smaller png to actually work - will supply soon #}}
 
   {# facebook #}
   <script src="{% static 'app.js' %}"></script>
@@ -41,22 +35,24 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">GoodBets</a>
+          <a class="navbar-brand" href="../home">
+             <img style="width:45px; margin-top: -7px;"
+             src="{{ STATIC_URL }}logo-inverse.png">
+          </a>
+          <a class="navbar-brand" href="../home">GoodBets</a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="{% active request home %}"><a href="../home">Home</a></li>
-            <li><a class="{% active request challenge %}" href="../challenge">Bet</a></li>
-            <li><a class="{% active request feed %}" href="../feed">Feed</a></li>
-            <li><a class="{% active request myBets %}" href="#">My Bets</a></li>
-            <li><a class="{% active request profile %}" href="../profile">Profile</a></li>
+            <li class="{% active request 'home' %}"><a href="../home">Home</a></li>
+            <li class="{% active request 'challenge' %}"><a href="../challenge">Bet</a></li>
+            <li class="{% active request 'feed' %}"><a href="../feed">Feed</a></li>
+            <li class="{% active request 'myBets' %}"><a href="#">My Bets</a></li>
+            <li class="{% active request 'profile' %}"><a href="../profile">Profile</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a class='{% active request about %}' href="../about">About us</a></li>
-            <li><h4 class="navbar-text" id="status"> </h4></li>
-          
-            <li><a href="#">Register</a></li>
-            <li class='{% active request login %}'><a href="../">Login</a></li>
+            <li class=""><a href="../about">About us</a></li>
+            <li class="navbar-text"><h4 id="status"> </h4></li>
+            <li class="{% active request 'login' %}"><a href="../login">Login</a></li>
           </ul>
 
         </div><!--/.nav-collapse -->
