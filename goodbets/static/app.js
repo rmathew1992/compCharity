@@ -8,18 +8,18 @@ function statusChangeCallback(response) {
   // for FB.getLoginStatus().
   if (response.status === 'connected') {
     // Logged into your app and Facebook.
-    console.log('change');
     testAPI();
+    status = "loggedIn";
   } else if (response.status === 'not_authorized') {
     // The person is logged into Facebook, but not your app.
     document.getElementById('status').innerHTML = 'Please log ' +
       'into this app.';
-      console.log('change1');
   } else {
     // The person is not logged into Facebook, so we're not sure if
     // they are logged into this app or not.
     document.getElementById('status').innerHTML = 'Please log ' +
       'into Facebook.';
+      status="loggedOut";
   }
 }
 
@@ -30,12 +30,16 @@ function checkLoginState() {
   FB.getLoginStatus(function(response) {
     statusChangeCallback(response);
   });
- $.get( "/profile",name)
-    .done(function( data ) {
+  if(status === "loggedIn"){
+    FB.api('/me', function(response){
+     $.get( "/profile",{ "name": [response.name] })
+      .done(function( data ) {
       var url = "/profile";    
       $(location).attr('href',url);
-  });
-}
+    });
+  });  
+  }
+};
 
 window.fbAsyncInit = function() {
 FB.init({
@@ -83,13 +87,5 @@ function testAPI() {
       
       // Hidden form filling for Logged In User
       document.getElementById('challenger').value = response.name;
-
-      //when profile button is clicked send response name back to the view and render new page
-      name = { "name": [response.name]} 
-      });
-
-    };
-
-
-
-
+    });
+};

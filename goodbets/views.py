@@ -18,6 +18,7 @@ def login(request):
 def profile(request):
    if request.method == 'GET':
     try:
+        print request.GET.values()
         rgv = request.GET.values()
         logger.debug('requestgetvalues: %s' % rgv)
         if len(rgv) == 1 and rgv[0] != '':
