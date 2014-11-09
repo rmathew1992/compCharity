@@ -98,8 +98,13 @@ def feed(request):
 
         if form.is_valid():
             print form.cleaned_data['challengeTitle']
-
+            requestChalTitle = form.cleaned_data['challengeTitle']
+            challenge = Challenge.objects.get(title=requestChalTitle)
+            print challenge.description
             render(request, 'feed.html')
+
+
+        
     
     # Reload the Feed whether an update to the database has happened
     challenge_list = Challenge.objects.all()
@@ -128,6 +133,7 @@ def paypal_test(request):
         'request': request,
     }
     return render_to_response("payment.html", context)
+
 
 def material(request):
     return render(request, 'material-demo.html')
