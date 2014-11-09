@@ -1,0 +1,19 @@
+body{
+	/*background-color: blue;*/
+	background: url("img/panda1.png") no-repeat center center fixed; 
+  	-webkit-background-size: cover;
+  	-moz-background-size: cover;
+  	-o-background-size: cover;
+  	background-size: cover;
+}
+
+
+#test{
+	margin-left: 50%;
+	margin-top: 25%;
+}
+
+#logout{
+	margin-left: 50%;
+	margin-top: 5%;
+}
