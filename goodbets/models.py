@@ -30,15 +30,27 @@ class Challenge(models.Model):
 	bets: the Bets that have been pooled around this challenge.
 	challengees: the users who have been challenged
 	"""
+	UNCOMPLETED = 0
+	COMPLETED = 1
+	FAILED = 2
+	STATUS_CHOICES = (
+		(UNCOMPLETED, 'uncompleted'),
+		(COMPLETED, 'completed'),
+		(FAILED, 'failed')
+	)
 
 	def __str__(self):
 		return self.title
+
+	def is_active(self):
+		return self.status == UNCOMPLETED
 
 	title = models.CharField(default='', max_length=150)
 	description = models.TextField()
 	chipins = models.ManyToManyField('Chipin')
 	challengees = models.ManyToManyField('User')
 	charity = models.ForeignKey('Charity')
+	status = models.IntegerField(choices=STATUS_CHOICES, default=UNCOMPLETED)
 	datetime = models.DateTimeField(auto_now=True)
 
 class Chipin(models.Model):
