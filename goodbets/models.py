@@ -43,7 +43,7 @@ class Challenge(models.Model):
 		return self.title
 
 	def is_active(self):
-		return self.status == UNCOMPLETED
+		return self.status == self.UNCOMPLETED
 
 	title = models.CharField(default='', max_length=150)
 	description = models.TextField()
