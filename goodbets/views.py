@@ -1,8 +1,8 @@
 
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.template.response import TemplateResponse
+from goodbets.forms import ChallengeForm, ChipinForm
 from django.shortcuts import get_object_or_404, get_list_or_404, render, redirect, render_to_response
-from goodbets.forms import ChallengeForm
 from django.forms import ModelForm
 from goodbets.models import User, Challenge, Chipin
 from paypal.standard.forms import PayPalPaymentsForm
@@ -93,6 +93,20 @@ def home(request):
 def about(request):
     return render(request, 'about.html', {'request': request},)
 def feed(request):
+    if request.method == 'POST':
+        form = ChipinForm(request.POST)
+
+        if form.is_valid():
+            print form.cleaned_data['challengeTitle']
+            requestChalTitle = form.cleaned_data['challengeTitle']
+            challenge = Challenge.objects.get(title=requestChalTitle)
+            print challenge.description
+            render(request, 'feed.html')
+
+
+        
+    
+    # Reload the Feed whether an update to the database has happened
     challenge_list = Challenge.objects.all()
     context = {
         'challenge_list': challenge_list, 
@@ -119,6 +133,7 @@ def paypal_test(request):
         'request': request,
     }
     return render_to_response("payment.html", context)
+
 
 def material(request):
     return render(request, 'material-demo.html')
