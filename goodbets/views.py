@@ -23,14 +23,22 @@ def profile(request):
         if len(rgv) == 1 and rgv[0] != '':
             # Turn FB name into "First Last" format
             username = rgv[0]
-            print "Zoher is the dumps"
-            print username
+            #print "Zoher is the dumps"
+            #print username
             username = username.encode('utf-8')
             # Store user to session
-            request.session["username"] = username
+            # request.session["username"] = username
+
             # If the user does not exist save to DB
             if not User.objects.filter(username=username).exists():
                 User(username=username).save()
+
+            meh = User.objects.get(username=username)
+            meh.is_active = True
+            meh.save()
+            print "Zoher zoher"
+            print meh
+            print meh.is_active
     except Exception as e:
         print e
     user_list = User.objects.all()

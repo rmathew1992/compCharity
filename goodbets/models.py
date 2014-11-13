@@ -15,6 +15,7 @@ class User(models.Model):
 		return self.username
 
 	username = models.CharField(max_length=50)
+	is_active = models.BooleanField(default=False)
 
 class Challenge(models.Model):
 	"""
