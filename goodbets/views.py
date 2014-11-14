@@ -1,5 +1,6 @@
 
 from django.http import HttpResponse, HttpResponseRedirect, Http404
+from django.conf import settings
 from django.template.response import TemplateResponse
 from django.shortcuts import get_object_or_404, get_list_or_404, render, redirect, render_to_response
 from goodbets.forms import ChallengeForm
@@ -103,11 +104,11 @@ def feed(request):
 def paypal_test(request):
     # What you want the button to do.
     paypal_dict = {
-        "business": "a@a.com",
+        "business": settings.PAYPAL_RECIEVER_EMAIL,
         "amount": "00.01",
         "item_name": "the feeling of goodnesss in your heart",
         "invoice": "unique-invoice-id",
-        "notify_url": "https://www.example.com",
+        "notify_url": request.build_absolute_url(''),
         "return_url": "https://www.example.com/your-return-location/",
         "cancel_return": "https://www.example.com/your-cancel-location/",
     }

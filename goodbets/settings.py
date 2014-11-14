@@ -1,5 +1,3 @@
-
-
 """
 Django settings for goodbets project.
 
@@ -43,6 +41,7 @@ INSTALLED_APPS = (
     'crispy_forms',
     'bootstrap3',
     'djangobower',
+    'paypal.standard.ipn',
 )
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
@@ -140,7 +139,7 @@ USE_L10N = True
 
 USE_TZ = True
 
-PAYPAL_RECEIVER_EMAIL = "a@a.com"
+PAYPAL_RECEIVER_EMAIL = "team04.ebang@olin.edu"
 
 TEMPLATE_DIRS = [os.path.join(PROJECT_ROOT, 'templates')]
 
