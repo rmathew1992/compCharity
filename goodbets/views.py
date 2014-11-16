@@ -29,6 +29,9 @@ def profile(request):
             # If the user does not exist save to DB
             if not User.objects.filter(username=username).exists():
                 User(username=username).save()
+            current_user = User.objects.get(username=username)
+            current_user.is_active = True
+            current_user.save()
     except Exception as e:
         print e
     user_list = User.objects.all()
