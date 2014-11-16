@@ -1,10 +1,11 @@
 
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.template.response import TemplateResponse
-from django.shortcuts import get_object_or_404, get_list_or_404, render, redirect
 from goodbets.forms import ChallengeForm, ChipinForm
+from django.shortcuts import get_object_or_404, get_list_or_404, render, redirect, render_to_response
 from django.forms import ModelForm
 from goodbets.models import User, Challenge, Chipin
+from paypal.standard.forms import PayPalPaymentsForm
 import logging
 logger = logging.getLogger(__name__)
 
@@ -122,10 +123,29 @@ def feed(request):
     challenge_list = Challenge.objects.all()
     context = {
         'challenge_list': challenge_list, 
+        'request': request,
     }
     return render(request, 'feed.html', context)
 
+def paypal_test(request):
+    # What you want the button to do.
+    paypal_dict = {
+        "business": "a@a.com",
+        "amount": "00.01",
+        "item_name": "the feeling of goodnesss in your heart",
+        "invoice": "unique-invoice-id",
+        "notify_url": "https://www.example.com",
+        "return_url": "https://www.example.com/your-return-location/",
+        "cancel_return": "https://www.example.com/your-cancel-location/",
+    }
 
+    # Create the instance.
+    form = PayPalPaymentsForm(initial=paypal_dict)
+    context = {
+        "form": form,
+        'request': request,
+    }
+    return render_to_response("payment.html", context)
 
 
 def material(request):
