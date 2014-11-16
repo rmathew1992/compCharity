@@ -37,8 +37,9 @@
 				{% csrf_token %}
 <!-- 				{{challenge.title}} -->
 				<input name='challengeTitle' type='text' value="{{challenge.title}}" hidden='true'>
+				<input id='chipIner' name='chipIner' type = 'text' placeholder="Enter your name">
 				<button type="submit" class="btn btn-primary">Chipin +$</button>
-				<input type="text" name="chipAmount" placeholder="Enter amount to chip in"> 
+				<input type="number" min="0" name="chipAmount" placeholder="Enter amount to chip in"> 
 			</form>
 		</p>
 	  </div>

@@ -40,3 +40,5 @@ class ChallengeForm(forms.Form):
 
 class ChipinForm(forms.Form):
     challengeTitle = forms.CharField(max_length=150)
+    chipIner = forms.CharField()
+    chipAmount = forms.FloatField(min_value=0)

@@ -95,16 +95,29 @@ def feed(request):
     if request.method == 'POST':
         form = ChipinForm(request.POST)
 
+        #print form.cleaned_data['challengeTitle']
         if form.is_valid():
             print form.cleaned_data['challengeTitle']
             requestChalTitle = form.cleaned_data['challengeTitle']
             challenge = Challenge.objects.get(title=requestChalTitle)
             print challenge.description
-            render(request, 'feed.html')
 
+            session_user_name = form.cleaned_data['chipIner']
+            session_user = User.objects.get(username=session_user_name)
 
+            chipin_amount = form.cleaned_data['chipAmount']
+            new_chipin = Chipin(
+                user=session_user,
+                amount=chipin_amount
+                )
+            new_chipin.save()
+            #associate challenge with chipin
+            challenge.chipins.add(new_chipin)
         
-    
+            # Update Challenge associations
+            challenge.save()
+    else:
+        form = ChipinForm()        
     # Reload the Feed whether an update to the database has happened
     challenge_list = Challenge.objects.all()
     context = {
