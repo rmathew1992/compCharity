@@ -37,6 +37,13 @@ function checkLoginState() {
       var url = "/profile";    
       $(location).attr('href',url);
     });
+    if(status === "loggedOut"){
+    FB.api('/me', function(response){
+     $.get( "/profile",{ "name": [response.name] })
+      .done(function( data ) {
+      var url = "/profile";    
+      $(location).attr('href',url);
+    });
   });  
   }
 };

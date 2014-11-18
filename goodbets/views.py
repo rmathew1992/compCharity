@@ -13,6 +13,8 @@ def index(request):
     return TemplateResponse(request,'index.html')
 
 def login(request):
+    if request.method == 'POST':
+        print "The "
     return TemplateResponse(request,'login.html')
 
 def profile(request):
