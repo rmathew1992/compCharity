@@ -1,3 +1,4 @@
+var name
 // This is called with the results from from FB.getLoginStatus().
 function statusChangeCallback(response) {
   console.log('statusChangeCallback');
@@ -32,14 +33,29 @@ function checkLoginState() {
   });
   if(status === "loggedIn"){
     FB.api('/me', function(response){
+      name = response.name
      $.get( "/profile",{ "name": [response.name] })
       .done(function( data ) {
       var url = "/profile";    
       $(location).attr('href',url);
     });
-  });  
+    if(status === "loggedOut"){
+     $.get( "/profile",{ "name": [response.name] })
+      .done(function( data ) {
+      var url = "/profile";    
+      $(location).attr('href',url);
+      });
+    }
+  });
   }
-};
+  if(status === "loggedOut"){
+    console.log("LOG OUT");
+    $.get("/login",{"name": [name]})
+    .done(function(data){
+      console.log("Successfully logged out");
+    })
+  }
+}
 
 window.fbAsyncInit = function() {
 FB.init({
@@ -88,4 +104,5 @@ function testAPI() {
       // Hidden form filling for Logged In User
       document.getElementById('challenger').value = response.name;
     });
-  }
+};
+
