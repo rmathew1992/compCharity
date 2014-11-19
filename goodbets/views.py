@@ -1,8 +1,8 @@
 
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.template.response import TemplateResponse
+from goodbets.forms import ChallengeForm, ChipinForm
 from django.shortcuts import get_object_or_404, get_list_or_404, render, redirect, render_to_response
-from goodbets.forms import ChallengeForm
 from django.forms import ModelForm
 from goodbets.models import User, Challenge, Chipin
 from paypal.standard.forms import PayPalPaymentsForm
@@ -13,6 +13,18 @@ def index(request):
     return TemplateResponse(request,'index.html')
 
 def login(request):
+    if request.method == 'GET':
+        try:
+            rgv = request.GET.values()
+            logger.debug('requestgetvalues: %s' % rgv)
+            if len(rgv) == 1 and rgv[0] != '':
+                username = rgv[0]
+                username = username.encode('utf-8')
+                current_user = User.objects.get(username=username)
+                current_user.is_active = False
+                current_user.save()
+        except Exception as e:
+            print e
     return TemplateResponse(request,'login.html')
 
 def profile(request):
@@ -33,12 +45,9 @@ def profile(request):
             if not User.objects.filter(username=username).exists():
                 User(username=username).save()
 
-            meh = User.objects.get(username=username)
-            meh.is_active = True
-            meh.save()
-            print "Zoher zoher"
-            print meh
-            print meh.is_active
+            current_user = User.objects.get(username=username)
+            current_user.is_active = True
+            current_user.save()
     except Exception as e:
         print e
     user_list = User.objects.all()
@@ -54,7 +63,7 @@ def profile(request):
 
 def challenge(request):
     # if this is a POST request we need to process the form data
-    if request.method == 'POST':
+    if request.method == 'GET':
         # create a form instance and populate it with data from the request:
         form = ChallengeForm(request.POST)
         # check whether it's valid:
@@ -103,6 +112,20 @@ def home(request):
 def about(request):
     return render(request, 'about.html', {'request': request},)
 def feed(request):
+    if request.method == 'POST':
+        form = ChipinForm(request.POST)
+
+        if form.is_valid():
+            print form.cleaned_data['challengeTitle']
+            requestChalTitle = form.cleaned_data['challengeTitle']
+            challenge = Challenge.objects.get(title=requestChalTitle)
+            print challenge.description
+            render(request, 'feed.html')
+
+
+        
+    
+    # Reload the Feed whether an update to the database has happened
     challenge_list = Challenge.objects.all()
     context = {
         'challenge_list': challenge_list, 
@@ -129,6 +152,7 @@ def paypal_test(request):
         'request': request,
     }
     return render_to_response("payment.html", context)
+
 
 def material(request):
     return render(request, 'material-demo.html')
