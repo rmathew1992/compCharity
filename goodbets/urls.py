@@ -15,7 +15,8 @@ urlpatterns = patterns('',
     url(r'^material/', views.material, name='material-design'),
     url(r'^feed/', views.feed, name='feed'),
     url(r'^paypal/', views.paypal_test, name='paypal'),
-    url(r'^mybets/', views.mybets, name='=mybets'),
+    url(r'^mybets/', views.mybets, name='mybets'),
+    url(r'^fulfill/', views.fulfill, name='fulfill'),
 )
 
 urlpatterns += staticfiles_urlpatterns()

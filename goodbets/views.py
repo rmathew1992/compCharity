@@ -1,4 +1,3 @@
-
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.conf import settings
 from django.template.response import TemplateResponse
@@ -112,6 +111,9 @@ def challenge(request):
 
 def home(request):
     return render(request, 'home.html', {'request': request})
+
+def fulfill(request):
+    return render(request, 'fulfill.html', {'request': request})
 
 def about(request):
     return render(request, 'about.html', {'request': request},)
