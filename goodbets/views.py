@@ -1,5 +1,6 @@
 
 from django.http import HttpResponse, HttpResponseRedirect, Http404
+from django.conf import settings
 from django.template.response import TemplateResponse
 from goodbets.forms import ChallengeForm, ChipinForm
 from django.shortcuts import get_object_or_404, get_list_or_404, render, redirect, render_to_response
@@ -163,8 +164,8 @@ def paypal_test(request):
     chipin_list=Chipin.objects.all()
     paypal_dict = {
         "business": "a@a.com",
-        "amount": "1.00",
-        "item_name": challenge_list[0],
+        "amount": "00.01",
+        "item_name": "the feeling of goodnesss in your heart",
         "invoice": "unique-invoice-id",
         "notify_url": "https://www.example.com",
         "return_url": "https://www.example.com/your-return-location/",
