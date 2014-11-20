@@ -10,7 +10,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 def index(request):
-    return TemplateResponse(request,'index.html')
+    return render(request, 'home.html', {'request': request})
 
 def login(request):
     if request.method == 'GET':
