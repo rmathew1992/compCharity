@@ -131,13 +131,24 @@ def feed(request):
         'request': request,
     }
     return render(request, 'feed.html', context)
+def mybets(request):
+
+    userchallenge_list=Challenge.objects.filter(chipins__user__username='Ryan Louie')
+
+    context = {
+        'userchallenge_list': userchallenge_list, 
+        'request': request,
+    }
+    return render(request, 'mybets.html', context) 
 
 def paypal_test(request):
     # What you want the button to do.
+    challenge_list = Challenge.objects.all()
+    chipin_list=Chipin.objects.all()
     paypal_dict = {
         "business": "a@a.com",
-        "amount": "00.01",
-        "item_name": "the feeling of goodnesss in your heart",
+        "amount": "1.00",
+        "item_name": challenge_list[0],
         "invoice": "unique-invoice-id",
         "notify_url": "https://www.example.com",
         "return_url": "https://www.example.com/your-return-location/",
@@ -146,8 +157,11 @@ def paypal_test(request):
 
     # Create the instance.
     form = PayPalPaymentsForm(initial=paypal_dict)
+    
     context = {
         "form": form,
+        'challenge_list': challenge_list,
+        'paypal_dict': paypal_dict, 
         'request': request,
     }
     return render_to_response("payment.html", context)
