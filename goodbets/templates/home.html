@@ -4,11 +4,26 @@
 
 {% block body %}
   <div class="jumbotron">
-    <h1>Guys. Guys. Guys.</h1>
-    <p>We have a homepage.</p>
-    <p>Okay. That's all.</p>
-    <p>
-      <a class="btn btn-lg btn-primary" href="../challenge" role="button">Make a bet</a>
+    <div class='row'>
+      <div class='col-md-2'>
+        <img style="width:100%; margin-top: -7px;"
+             src="{{ STATIC_URL }}logo.png">
+      </div>
+      <div class='col-md-10'>
+        <h1>Friendly challenges</h1>
+        <span style='align=center'>
+          <h2>for a good cause.</h2>
+        </span>
+      </div>
+    </div>
+    <div class='row'>
+      <span class='pull-right' style='margin-right:5%'>
+        <a class="btn btn-lg btn-primary" href="../challenge" role="button">
+          Make a bet
+        </a>
+      </span>
+    </div>
+
     </p>
   </div>
 {% endblock body %}
