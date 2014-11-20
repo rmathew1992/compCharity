@@ -13,6 +13,18 @@ def index(request):
     return TemplateResponse(request,'index.html')
 
 def login(request):
+    if request.method == 'GET':
+        try:
+            rgv = request.GET.values()
+            logger.debug('requestgetvalues: %s' % rgv)
+            if len(rgv) == 1 and rgv[0] != '':
+                username = rgv[0]
+                username = username.encode('utf-8')
+                current_user = User.objects.get(username=username)
+                current_user.is_active = False
+                current_user.save()
+        except Exception as e:
+            print e
     return TemplateResponse(request,'login.html')
 
 def profile(request):
@@ -23,12 +35,19 @@ def profile(request):
         if len(rgv) == 1 and rgv[0] != '':
             # Turn FB name into "First Last" format
             username = rgv[0]
+            #print "Zoher is the dumps"
+            #print username
             username = username.encode('utf-8')
             # Store user to session
-            request.session["username"] = username
+            # request.session["username"] = username
+
             # If the user does not exist save to DB
             if not User.objects.filter(username=username).exists():
                 User(username=username).save()
+
+            current_user = User.objects.get(username=username)
+            current_user.is_active = True
+            current_user.save()
     except Exception as e:
         print e
     user_list = User.objects.all()
@@ -47,9 +66,12 @@ def challenge(request):
     if request.method == 'POST':
         # create a form instance and populate it with data from the request:
         form = ChallengeForm(request.POST)
+        print "FORM"
+        print form
         # check whether it's valid:
         if form.is_valid():
             # Get Session User
+            print "valid form yo"
             challenger_name = form.cleaned_data['challenger']
             session_user = User.objects.get(username=challenger_name)
 
@@ -74,10 +96,10 @@ def challenge(request):
             # Associate Challengees with Challenge
             for challengee in form.cleaned_data['challengees']:
                 new_challenge.challengees.add(challengee)
+                print ("added challengee")
 
             # Update Challenge associations
             new_challenge.save()
-            
             # redirect to a new URL:
             return redirect('profile')
 
@@ -95,17 +117,16 @@ def about(request):
 def feed(request):
     if request.method == 'POST':
         form = ChipinForm(request.POST)
-
-        #print form.cleaned_data['challengeTitle']
+        print "test"
+        print form
         if form.is_valid():
+            print "Is valid"
             print form.cleaned_data['challengeTitle']
             requestChalTitle = form.cleaned_data['challengeTitle']
             challenge = Challenge.objects.get(title=requestChalTitle)
             print challenge.description
-
-            session_user_name = form.cleaned_data['chipIner']
-            session_user = User.objects.get(username=session_user_name)
-
+            session_user = User.objects.get(username=form.cleaned_data['userName'])
+            print session_user
             chipin_amount = form.cleaned_data['chipAmount']
             new_chipin = Chipin(
                 user=session_user,

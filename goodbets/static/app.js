@@ -1,3 +1,4 @@
+var name
 // This is called with the results from from FB.getLoginStatus().
 function statusChangeCallback(response) {
   console.log('statusChangeCallback');
@@ -32,14 +33,29 @@ function checkLoginState() {
   });
   if(status === "loggedIn"){
     FB.api('/me', function(response){
+      name = response.name
      $.get( "/profile",{ "name": [response.name] })
       .done(function( data ) {
       var url = "/profile";    
       $(location).attr('href',url);
     });
-  });  
+    if(status === "loggedOut"){
+     $.get( "/profile",{ "name": [response.name] })
+      .done(function( data ) {
+      var url = "/profile";    
+      $(location).attr('href',url);
+      });
+    }
+  });
   }
-};
+  if(status === "loggedOut"){
+    console.log("LOG OUT");
+    $.get("/login",{"name": [name]})
+    .done(function(data){
+      console.log("Successfully logged out");
+    })
+  }
+}
 
 window.fbAsyncInit = function() {
 FB.init({
@@ -67,7 +83,6 @@ FB.getLoginStatus(function(response) {
 });
 
 };
-
 // Load the SDK asynchronously
 (function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
@@ -83,33 +98,11 @@ function testAPI() {
     console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', function(response) {
       console.log('Successful login for: ' + response.name);
-      document.getElementById('profile_nav').innerHTML = response.name;
       
       // Hidden form filling for Logged In User
-      document.getElementById('challenger').value = response.name;
-
-
-      //document.getElementById('chipIner').value = response.name;
-
-      //replacing the text in the navigation bar
-      login_string = document.getElementById('login_link').innerHTML
-      login = login_string.replace("Login", "Logout");
-      document.getElementById("login_link").innerHTML = login;
-
-      //hide and show button dance
-      $("#login-info").hide();
-      $("#logout").show();
-      $('#profile').show();
-
-      //when profile button is clicked send response name back to the view and render new page
-      $('#profile').click(function(){
-        console.log('clicked');
-        $.get( "/profile", { "name": [response.name] } )
-          .done(function( data ) {
-            var url = "/profile";    
-            $(location).attr('href',url);
-        });
-      });
+      document.getElementById('userName').value = response.name;
+      console.log(document.getElementById('userName').value)
 
     });
-  }
+};
+

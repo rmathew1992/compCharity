@@ -1,15 +1,78 @@
 {% extends "base.html" %}
 {% block body %}
+	
   <div class='container-fluid'>
-  	<h1>Here are your challenges, NAME</h1>
-  		<p>Users you've challenged</p>
-			{{ user_list.0}}
+  	<h1>Welcome Rachel</h1>
+  	<div class="text-left">
+  		{% load static %}
+  		 <img src="{% static "profile.jpg" %}" alt="Hi!"class="img-thumbnail img-responsive" style="width:10%"/>
+  	</div>
+  	<h2>Current Challenges:</h2>
 	</div>
 	<div class='container-fluid'>
+
+		<h4>You Challenged:</h4>
+		<table class="table table-striped">
+  			<tr>
+    			<th>Name</th>
+    			<th>Description</th> 
+    			<th>Pot($)</th>
+  			</tr>
+  			<tr>
+    			<td>Sireesh</td>
+    			<td>Sink a 1000 baskets before the end of the week</td> 
+    			<td>100</td>
+  			</tr>
+  			<tr>
+    			<td>Tara</td>
+    			<td>Show up to all your classes</td> 
+    			<td>15</td>
+  			</tr>
+		</table>
+
+		<h4>You were Challenged:</h4>
+		<table class="table table-striped">
+  			<tr>
+    			<th>Name</th>
+    			<th>Description</th> 
+    			<th>Pot($)</th>
+  			</tr>
+  			<tr>
+    			<td>Pooja</td>
+    			<td>Floss everyday</td> 
+    			<td>1000000</td>
+  			</tr>
+  			<tr>
+    			<td>Krithi</td>
+    			<td>Learn to drive</td> 
+    			<td>123</td>
+  			</tr>
+		</table>
+		
+		<h2>Current ChipIns:</h2>
+		<table class="table table-striped">
+  			<tr>
+    			<th>Challenger</th>
+    			<th>Challengee</th>
+    			<th>Description</th> 
+    			<th>Amount chipped in</th>
+  			</tr>
+  			<tr>
+    			<td>Anjali</td>
+    			<td>Ankeet</td>
+    			<td>Make potato salad for a month</td> 
+    			<td>10</td>
+  			</tr>
+  			<tr>
+    			<td>Heena</td>
+    			<td>Poorva</td>
+    			<td>Catch a fish</td> 
+    			<td>3</td>
+  			</tr>
+		</table>
+	</div>
+	
 		Challenge List
-		{{ challenge_list }}
-	</div>
-	<div class='container-fluid'>
 		ChipIn List
 		{{ bet_list }}
 	</div>

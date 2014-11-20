@@ -25,7 +25,7 @@ class ChallengeForm(forms.Form):
     helper.form_id = "Wrapper"
     helper.layout = Layout(
         # in app.js, the elements of id='status' will take on value = request.name
-        Field('challenger', type='hidden', id='challenger'),
+        Field('challenger', type='hidden', id='userName'),
         Field('title'),
         Field('challengees'),
         Field('charity'),
@@ -40,5 +40,5 @@ class ChallengeForm(forms.Form):
 
 class ChipinForm(forms.Form):
     challengeTitle = forms.CharField(max_length=150)
-    chipIner = forms.CharField()
     chipAmount = forms.FloatField(min_value=0)
+    userName = forms.CharField(max_length=150)
