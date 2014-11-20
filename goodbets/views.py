@@ -66,9 +66,12 @@ def challenge(request):
     if request.method == 'POST':
         # create a form instance and populate it with data from the request:
         form = ChallengeForm(request.POST)
+        print "FORM"
+        print form
         # check whether it's valid:
         if form.is_valid():
             # Get Session User
+            print "valid form yo"
             challenger_name = form.cleaned_data['challenger']
             session_user = User.objects.get(username=challenger_name)
 
@@ -93,6 +96,7 @@ def challenge(request):
             # Associate Challengees with Challenge
             for challengee in form.cleaned_data['challengees']:
                 new_challenge.challengees.add(challengee)
+                print ("added challengee")
 
             # Update Challenge associations
             new_challenge.save()
@@ -113,17 +117,29 @@ def about(request):
 def feed(request):
     if request.method == 'POST':
         form = ChipinForm(request.POST)
-
+        print "test"
+        print form
         if form.is_valid():
+            print "Is valid"
             print form.cleaned_data['challengeTitle']
             requestChalTitle = form.cleaned_data['challengeTitle']
             challenge = Challenge.objects.get(title=requestChalTitle)
             print challenge.description
-            render(request, 'feed.html')
-
-
+            session_user = User.objects.get(username=form.cleaned_data['userName'])
+            print session_user
+            chipin_amount = form.cleaned_data['chipAmount']
+            new_chipin = Chipin(
+                user=session_user,
+                amount=chipin_amount
+                )
+            new_chipin.save()
+            #associate challenge with chipin
+            challenge.chipins.add(new_chipin)
         
-    
+            # Update Challenge associations
+            challenge.save()
+    else:
+        form = ChipinForm()        
     # Reload the Feed whether an update to the database has happened
     challenge_list = Challenge.objects.all()
     context = {

@@ -83,7 +83,6 @@ FB.getLoginStatus(function(response) {
 });
 
 };
-
 // Load the SDK asynchronously
 (function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
@@ -101,7 +100,9 @@ function testAPI() {
       console.log('Successful login for: ' + response.name);
       
       // Hidden form filling for Logged In User
-      document.getElementById('challenger').value = response.name;
+      document.getElementById('userName').value = response.name;
+      console.log(document.getElementById('userName').value)
+
     });
 };
 
