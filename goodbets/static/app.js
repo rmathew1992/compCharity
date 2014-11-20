@@ -11,16 +11,16 @@ function statusChangeCallback(response) {
     // Logged into your app and Facebook.
     testAPI();
     status = "loggedIn";
+    document.getElementById('login-info').innerHTML = 'Log out below and come back soon!'
   } else if (response.status === 'not_authorized') {
     // The person is logged into Facebook, but not your app.
-    document.getElementById('status').innerHTML = 'Please log ' +
+    document.getElementById('login-info').innerHTML = 'Please log ' +
       'into this app.';
   } else {
+    status="loggedOut";
+    document.getElementById('login-info').innerHTML = 'Log in to continue'
     // The person is not logged into Facebook, so we're not sure if
     // they are logged into this app or not.
-    document.getElementById('status').innerHTML = 'Please log ' +
-      'into Facebook.';
-      status="loggedOut";
   }
 }
 
@@ -83,7 +83,6 @@ FB.getLoginStatus(function(response) {
 });
 
 };
-
 // Load the SDK asynchronously
 (function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
@@ -101,7 +100,9 @@ function testAPI() {
       console.log('Successful login for: ' + response.name);
       
       // Hidden form filling for Logged In User
-      document.getElementById('challenger').value = response.name;
+      document.getElementById('userName').value = response.name;
+      console.log(document.getElementById('userName').value)
+
     });
 };
 
