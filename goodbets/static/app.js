@@ -104,5 +104,9 @@ function testAPI() {
       console.log(document.getElementById('userName').value)
 
     });
+      FB.api('/me/picture?type=large', function (response) {
+         document.getElementById("propic").setAttribute("src", response.data.url);
+      });  
+    
 };
-
+ 
