@@ -104,11 +104,11 @@ def feed(request):
 def paypal_test(request):
     # What you want the button to do.
     paypal_dict = {
-        "business": settings.PAYPAL_RECIEVER_EMAIL,
+        "business": "team04.ebang@olin.edu",
         "amount": "00.01",
         "item_name": "the feeling of goodnesss in your heart",
         "invoice": "unique-invoice-id",
-        "notify_url": request.build_absolute_url(''),
+        "notify_url": '',
         "return_url": "https://www.example.com/your-return-location/",
         "cancel_return": "https://www.example.com/your-cancel-location/",
     }
