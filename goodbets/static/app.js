@@ -99,7 +99,6 @@ function testAPI() {
     console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', function(response) {
       console.log('Successful login for: ' + response.name);
-      document.getElementById('profile_nav').innerHTML = response.name;
       
       // Hidden form filling for Logged In User
       document.getElementById('challenger').value = response.name;

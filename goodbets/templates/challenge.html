@@ -5,7 +5,11 @@
   {% load crispy_forms_tags %}
 
   {% block content %}
-     {% crispy form %}
+    <div class='well'>
+      <div class='row'>
+        {% crispy form %}
+      </div>
+    </div>
   {% endblock %}
 
 {% endblock body %}
