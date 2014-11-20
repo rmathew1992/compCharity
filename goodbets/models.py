@@ -15,6 +15,7 @@ class User(models.Model):
 		return self.username
 
 	username = models.CharField(max_length=50)
+	is_active = models.BooleanField(default=False)
 
 class Challenge(models.Model):
 	"""
@@ -30,15 +31,30 @@ class Challenge(models.Model):
 	bets: the Bets that have been pooled around this challenge.
 	challengees: the users who have been challenged
 	"""
+	UNCOMPLETED = 0
+	COMPLETEDPAYED = 1
+	COMPLETEDUNPAYED = 2
+	FAILED = 3
+	STATUS_CHOICES = (
+		(UNCOMPLETED, 'uncompleted'),
+		(COMPLETEDPAYED, 'completedpayed'),
+		(COMPLETEDUNPAYED, 'completedunpayed'),
+		(FAILED, 'failed')
+	)
 
 	def __str__(self):
 		return self.title
+
+	def is_active(self):
+		return self.status == self.UNCOMPLETED
 
 	title = models.CharField(default='', max_length=150)
 	description = models.TextField()
 	chipins = models.ManyToManyField('Chipin')
 	challengees = models.ManyToManyField('User')
 	charity = models.ForeignKey('Charity')
+	status = models.IntegerField(choices=STATUS_CHOICES, default=UNCOMPLETED)
+	datetime = models.DateTimeField(auto_now=True)
 
 class Chipin(models.Model):
 	"""
@@ -62,6 +78,7 @@ class Chipin(models.Model):
 	user = models.ForeignKey('User')
 	amount = models.FloatField()
 	is_challenger = models.BooleanField(default='False')
+	datetime = models.DateTimeField(auto_now=True)
 
 class Charity(models.Model):
 	"""Charities are the destination to where the

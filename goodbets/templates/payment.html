@@ -1,6 +1,23 @@
 {% extends "base.html" %}
+{% load tags %}
 
+{% block title %} Goodbets | Home {% endblock title %}
 {% block body %}
+	  <div class="jumbotron">
+	  	<p>
+			Amount donating: <strong>{{paypal_dict.amount}}$</strong>	
+		</p>
+		<p> 
+			to <a href="javascript:void(0)" class="btn btn-danger btn-raised">{{ paypal_dict.item_name.charity }}</a>
+		</p>
+		<h1>
+		
+		<p>
+			because of challange: <strong>{{ paypal_dict.item_name }}</strong></h1>	
+		</p>
+		<p><h5>click the PayPal Button below to finish the donation process!</h5></p>
+		
+	  </div>
   <div class="jumbotron">
     {{ form.render }}
   </div>

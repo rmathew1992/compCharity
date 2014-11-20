@@ -3,14 +3,13 @@
 {% block body %}
     	
     <div class="jumbotron">
-  		<div id="login-info">
-  		  	<h1>Please login to continue</h1>
-    		<fb:login-button scope="public_profile,email" id="fb-icon" onlogin="checkLoginState();">
-    		</fb:login-button>
-    		<div id="login_message"></div>
-    	</div>
-    	<button id="logout" style="display:none">Logout</button>
-    	<button id="profile" style="display:none">Continue</button> 
+  		
+  		  	<h1 id="login-info"></h1>
+    		
+        <div id="fb-root">
+        <fb:login-button size="xlarge"autologoutlink="true" scope="public_profile,email" onlogin="checkLoginState();"> 
+        </fb:login-button>
+        </div>
 	</div>
 
 {% endblock body %}
