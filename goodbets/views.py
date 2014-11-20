@@ -63,7 +63,7 @@ def profile(request):
 
 def challenge(request):
     # if this is a POST request we need to process the form data
-    if request.method == 'GET':
+    if request.method == 'POST':
         # create a form instance and populate it with data from the request:
         form = ChallengeForm(request.POST)
         # check whether it's valid:
@@ -96,7 +96,6 @@ def challenge(request):
 
             # Update Challenge associations
             new_challenge.save()
-            
             # redirect to a new URL:
             return redirect('profile')
 
