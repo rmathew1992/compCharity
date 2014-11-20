@@ -32,11 +32,13 @@ class Challenge(models.Model):
 	challengees: the users who have been challenged
 	"""
 	UNCOMPLETED = 0
-	COMPLETED = 1
-	FAILED = 2
+	COMPLETEDPAYED = 1
+	COMPLETEDUNPAYED = 2
+	FAILED = 3
 	STATUS_CHOICES = (
 		(UNCOMPLETED, 'uncompleted'),
-		(COMPLETED, 'completed'),
+		(COMPLETEDPAYED, 'completedpayed'),
+		(COMPLETEDUNPAYED, 'completedunpayed'),
 		(FAILED, 'failed')
 	)
 
