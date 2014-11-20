@@ -69,7 +69,6 @@ def challenge(request):
         # check whether it's valid:
         if form.is_valid():
             # Get Session User
-            print "One"
             challenger_name = form.cleaned_data['challenger']
             session_user = User.objects.get(username=challenger_name)
 
@@ -97,7 +96,6 @@ def challenge(request):
 
             # Update Challenge associations
             new_challenge.save()
-            print "Two"
             # redirect to a new URL:
             return redirect('profile')
 
